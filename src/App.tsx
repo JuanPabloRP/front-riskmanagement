@@ -17,6 +17,7 @@ function App() {
 				</Route>
 
 				{/* Rutas para registrarse o iniciar sesión */}
+				{/* cambio de prueba */}
 				<Route path={paths.auth}>
 					<Route path={paths.signin} element={<SignIn />} />
 					<Route path={paths.signup} element={<SignUp />} />
