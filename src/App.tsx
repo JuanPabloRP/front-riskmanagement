@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Index from './pages/public/home/Index';
-import SignIn from './pages/public/auth/SignIn';
+import SignIn from './pages/public/auth/signin/SignIn';
 import SignUp from './pages/public/auth/SignUp';
 import PrivateLayout from './layouts/PrivateLayout';
 import PublicLayout from './layouts/PublicLayout';
