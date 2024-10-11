@@ -12,7 +12,7 @@ const PrivateNavbar = () => {
 	};
 
 	return (
-		<Navbar fluid rounded>
+		<Navbar className="bg-slate-900 m-2 w-3/4 mx-auto rounded-xl border border-cyan-950 sticky top-2 z-50">
 			<Navbar.Brand
 				onClick={(e) => handleNavigate(e, paths.publicHome)}
 				className="flex gap-2 justify-center items-center hover:cursor-pointer"
@@ -68,13 +68,13 @@ const PrivateNavbar = () => {
 				</Dropdown>
 				<Navbar.Toggle />
 			</div>
-			<Navbar.Collapse>
-				<Navbar.Link href="#" active>
+			<Navbar.Collapse className="font-bold">
+				<Navbar.Link href="#" className="text-cyan-500">
 					Inicio
 				</Navbar.Link>
-				<Navbar.Link href="#">Riesgos</Navbar.Link>
-				<Navbar.Link href="#">Amenazas</Navbar.Link>
-				<Navbar.Link href="#">Plan de tratamiento</Navbar.Link>
+				<Navbar.Link href="#" className="text-cyan-600">
+					Riesgos
+				</Navbar.Link>
 			</Navbar.Collapse>
 		</Navbar>
 	);

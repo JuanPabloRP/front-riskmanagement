@@ -14,7 +14,11 @@ const PublicNavbar = () => {
 	};
 
 	return (
-		<Navbar fluid rounded>
+		<Navbar
+			fluid
+			rounded
+			className="bg-slate-900 m-2 w-3/4 mx-auto rounded-xl border border-cyan-950 sticky top-2 z-50"
+		>
 			<Navbar.Brand
 				onClick={(e) => handleNavigate(e, paths.publicHome)}
 				className="flex gap-2 justify-center items-center hover:cursor-pointer"

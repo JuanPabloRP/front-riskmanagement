@@ -15,6 +15,27 @@ npm install
 npm run dev
 ```
 
+## Colores
+
+Colores definidos
+
+Color textos:
+
+- Titulos: text-cyan-500
+- subtitulos: text-cyan-600
+- texto: text-gray-100
+- texto (no tan importante) text-gray-200
+
+Color botones:
+
+- Eliminar: bg-red-700
+- Guardar/Crear/Etc: bg-blue-700
+- Otros: bg-gray-600
+
+### En Flowbite-React los únicos bótones permitidos son:
+
+![Colores de bótones permitidos](src/assets/img/allowedButtons.png)
+
 ## ¿Con que se está estilizando?
 
 - Principalmente con [tailwind](https://tailwindcss.com/)
