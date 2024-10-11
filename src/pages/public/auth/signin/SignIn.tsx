@@ -1,7 +1,7 @@
 
 const SignIn = () => {
   return (
-    <div>SignIn</div>
+    <div>Inicio sesión</div>
   )
 }
 
