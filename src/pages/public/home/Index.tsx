@@ -6,7 +6,7 @@ const Index = () => {
 		<div>
 			<h1>Página inicial</h1>
 			<section className="flex flex-col justify-center items-center">
-				<h2 className="text-2xl text-cyan-500 ">Ir a la sección:</h2>
+				<h2 className="text-2xl text-color-text-tertiary ">Ir a la sección:</h2>
 				<section className="flex flex-col gap-1">
 					<Link to={paths.publicHome}>Home público</Link>
 					<Link to={paths.aboutUs}>Sobre nosotros</Link>

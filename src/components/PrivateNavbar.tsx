@@ -12,7 +12,7 @@ const PrivateNavbar = () => {
 	};
 
 	return (
-		<Navbar className="bg-slate-900 m-2 w-3/4 mx-auto rounded-xl border border-cyan-950 sticky top-2 z-50">
+		<Navbar className="bg-color-bg m-2 w-3/4 mx-auto rounded-xl border border-color-border sticky top-2 z-50">
 			<Navbar.Brand
 				onClick={(e) => handleNavigate(e, paths.publicHome)}
 				className="flex gap-2 justify-center items-center hover:cursor-pointer"
@@ -38,11 +38,11 @@ const PrivateNavbar = () => {
 					<path d="M8 10l4 2.5v4.5l4 -2.5v-4.5l-4 -2.5z" />
 					<path d="M8 10v4.5l4 2.5" />
 				</svg>
-				<span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+				<span className="self-center whitespace-nowrap text-xl font-semibold  ">
 					Gestión de riesgos
 				</span>
 			</Navbar.Brand>
-			<div className="flex md:order-2">
+			<div className="flex md:order-2 ">
 				<Dropdown
 					arrowIcon={false}
 					inline
@@ -53,26 +53,32 @@ const PrivateNavbar = () => {
 							rounded
 						/>
 					}
+					className="bg-color-bg border-color-bg-surface-primary text-color-text-primary"
 				>
-					<Dropdown.Header>
+					<Dropdown.Header className="border-color-bg-surface-primary text-color-text-primary">
 						<span className="block text-sm">Bonnie Green</span>
 						<span className="block truncate text-sm font-medium">
 							name@flowbite.com
 						</span>
 					</Dropdown.Header>
-					<Dropdown.Item>Riesgos</Dropdown.Item>
-					<Dropdown.Item>Controles</Dropdown.Item>
-					<Dropdown.Item>Amenazas</Dropdown.Item>
-					<Dropdown.Divider />
-					<Dropdown.Item>Cerrar sesión</Dropdown.Item>
+					<Dropdown.Item className="text-color-text-primary hover:bg-color-bg-fill-hover active:bg-color-bg-fill-active focus:bg-color-bg-fill-active">
+						Riesgos
+					</Dropdown.Item>
+					<Dropdown.Item className="text-color-text-primary hover:bg-color-bg-fill-hover active:bg-color-bg-fill-active focus:bg-color-bg-fill-active">
+						Plan de tratamiento
+					</Dropdown.Item>
+					<Dropdown.Divider className="bg-color-bg-surface-primary" />
+					<Dropdown.Item className="text-color-text-danger hover:bg-color-bg-fill-hover/50 active:bg-color-bg-fill-active/50 focus:bg-color-bg-fill-active/50">
+						Cerrar sesión
+					</Dropdown.Item>
 				</Dropdown>
 				<Navbar.Toggle />
 			</div>
 			<Navbar.Collapse className="font-bold">
-				<Navbar.Link href="#" className="text-cyan-500">
+				<Navbar.Link href="#" className="text-color-text-tertiary">
 					Inicio
 				</Navbar.Link>
-				<Navbar.Link href="#" className="text-cyan-600">
+				<Navbar.Link href="#" className="text-color-text-tertiary/50">
 					Riesgos
 				</Navbar.Link>
 			</Navbar.Collapse>

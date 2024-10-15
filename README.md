@@ -19,22 +19,12 @@ npm run dev
 
 Colores definidos
 
-Color textos:
+### Los únicos colores que vamos a usar son:
 
-- Titulos: text-cyan-500
-- subtitulos: text-cyan-600
-- texto: text-gray-100
-- texto (no tan importante) text-gray-200
+![Imagen del playgound](src/assets/img/Playgound.png)
 
-Color botones:
-
-- Eliminar: bg-red-700
-- Guardar/Crear/Etc: bg-blue-700
-- Otros: bg-gray-600
-
-### En Flowbite-React los únicos bótones permitidos son:
-
-![Colores de bótones permitidos](src/assets/img/allowedButtons.png)
+#### Si quieren ver todos los colores disponibles ver tailwind.config.js
+![Imagen de las configuraciones de tailwind](src/assets/img/tailwindConfig.png)
 
 ## ¿Con que se está estilizando?
 
