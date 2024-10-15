@@ -6,6 +6,7 @@ import PrivateLayout from './layouts/PrivateLayout';
 import PublicLayout from './layouts/PublicLayout';
 import Home from './pages/private/home/Home';
 import { paths } from './utils/constants';
+import Playground from './pages/playground/Playground';
 
 function App() {
 	return (
@@ -37,6 +38,10 @@ function App() {
 					}
 				/>
 			</Routes>
+			<hr />
+			<section className="flex justify-center items-center">
+				<Playground />
+			</section>
 		</Router>
 	);
 }

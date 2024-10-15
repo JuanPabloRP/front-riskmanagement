@@ -17,7 +17,7 @@ const PublicNavbar = () => {
 		<Navbar
 			fluid
 			rounded
-			className="bg-slate-900 m-2 w-3/4 mx-auto rounded-xl border border-cyan-950 sticky top-2 z-50"
+			className="bg-color-bg m-2 w-3/4 mx-auto rounded-xl border border-color-border sticky top-2 z-50"
 		>
 			<Navbar.Brand
 				onClick={(e) => handleNavigate(e, paths.publicHome)}
@@ -58,13 +58,13 @@ const PublicNavbar = () => {
 				<Navbar.Link
 					onClick={(e) => handleNavigate(e, paths.publicHome)}
 					active
-					className="hover:cursor-pointer"
+					className="hover:cursor-pointer text-color-text-tertiary"
 				>
 					Inicio
 				</Navbar.Link>
 				<Navbar.Link
 					onClick={(e) => handleNavigate(e, paths.aboutUs)}
-					className="hover:cursor-pointer"
+					className="hover:cursor-pointer text-color-text-tertiary/50"
 				>
 					Sobre nosotros
 				</Navbar.Link>
