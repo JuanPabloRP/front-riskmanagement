@@ -6,7 +6,6 @@ const PublicNavbar = () => {
 	const navigate = useNavigate();
 
 	const handleNavigate = (e: React.MouseEvent<HTMLElement>, path: string) => {
-		console.log(typeof e);
 		e.preventDefault();
 		navigate(path);
 	};

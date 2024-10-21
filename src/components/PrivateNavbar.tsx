@@ -5,8 +5,7 @@ import { paths } from '../utils/constants';
 const PrivateNavbar = () => {
 	const navigate = useNavigate();
 
-	const handleNavigate = (e, path: string) => {
-		console.log(typeof e);
+	const handleNavigate = (e: React.MouseEvent<HTMLElement>, path: string) => {
 		e.preventDefault();
 		navigate(path);
 	};
