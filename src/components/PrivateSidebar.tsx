@@ -1,4 +1,4 @@
-import { Sidebar, Button } from 'flowbite-react';
+import { Sidebar } from 'flowbite-react';
 import {
 	HiArrowSmRight,
 	HiChartPie,

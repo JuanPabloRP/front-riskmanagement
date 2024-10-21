@@ -1,13 +1,11 @@
 import { Button, Navbar } from 'flowbite-react';
-import { Link } from 'react-router-dom';
 import { paths } from '../utils/constants';
 import { useNavigate } from 'react-router-dom';
-import { MouseEventHandler } from 'react';
 
 const PublicNavbar = () => {
 	const navigate = useNavigate();
 
-	const handleNavigate = (e, path: string) => {
+	const handleNavigate = (e: React.MouseEvent<HTMLElement>, path: string) => {
 		console.log(typeof e);
 		e.preventDefault();
 		navigate(path);
@@ -49,7 +47,11 @@ const PublicNavbar = () => {
 				</span>
 			</Navbar.Brand>
 			<section className="flex md:order-2">
-				<Button onClick={(e: any) => handleNavigate(e, paths.signinFullRoute)}>
+				<Button
+					onClick={(e: React.MouseEvent<HTMLElement>) =>
+						handleNavigate(e, paths.signinFullRoute)
+					}
+				>
 					Iniciar sesión
 				</Button>
 				<Navbar.Toggle />
