@@ -1,15 +1,5 @@
-enum MethodType {
-	GET = 'GET',
-	POST = 'POST',
-	PUT = 'PUT',
-	DELETE = 'DELETE',
-}
+import { MethodType, ResponseType } from "../shared/enums/httpEnums";
 
-enum ResponseType {
-	JSON = 'json',
-	BLOB = 'blob',
-	TEXT = 'text',
-}
 
 export const fetchMethod = async <T>(
 	url: string,
