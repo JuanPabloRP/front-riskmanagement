@@ -1,4 +1,6 @@
 export const paths = {
+	playground: '/playground',
+
 	publicHome: '/',
 	aboutUs: '/about-us',
 
@@ -6,7 +8,7 @@ export const paths = {
 
 	signin: 'signin',
 	signinFullRoute: '/auth/signin',
-  
+
 	signup: 'signup',
 	signupFullRoute: '/auth/signup',
 

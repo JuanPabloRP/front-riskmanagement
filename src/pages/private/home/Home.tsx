@@ -4,10 +4,14 @@ import { paths } from '../../../utils/constants';
 const Home = () => {
 	return (
 		<>
-			<div className="text-color-text-tertiary font-bold">Private Home</div>
+			<div className="text-text-tertiary font-bold">Private Home</div>
 			<section className="flex flex-col justify-center items-center">
-				<h2 className="text-2xl text-color-text-tertiary">Ir a la sección:</h2>
+				<h2 className="text-2xl text-text-tertiary">Ir a la sección:</h2>
 				<section className="flex flex-col gap-1">
+					<Link to={paths.playground} className="text-text-danger">
+						Playground
+					</Link>
+
 					<Link to={paths.publicHome}>Home público</Link>
 					<Link to={paths.aboutUs}>Sobre nosotros</Link>
 					<Link to={paths.privateHome}>Home privado</Link>
