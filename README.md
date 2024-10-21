@@ -24,7 +24,8 @@ Colores definidos
 ![Imagen del playgound](src/assets/img/Playgound.png)
 
 #### Si quieren ver todos los colores disponibles ver tailwind.config.js
-![Imagen de las configuraciones de tailwind](src/assets/img/tailwindConfig.png)
+
+![Imagen de las configuraciones de tailwind](src/assets/img/tailwindConfig2.png)
 
 ## ¿Con que se está estilizando?
 
@@ -63,5 +64,131 @@ Colores definidos
 - Que se haga uso del modelo branching para el uso de las ramas en git
 - No repetición de código
 - Entre otras cosas
+
+# ¿Cómo vamos a hacer las peticiones?
+
+Vamos a utilizar este método llamado fetchMethod
+
+Ejemplo básico de su uso:
+
+```javascript
+  import React, { useEffect, useState } from 'react';
+
+// Suponiendo que has importado fetchMethod y los enums
+import { fetchMethod, MethodType, ResponseType } from './path/to/fetchMethod';
+
+const UserList: React.FC = () => {
+    const [users, setUsers] = useState<User[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                // Realiza la solicitud GET
+                const data = await fetchMethod<User[]>('https://api.example.com/users', MethodType.GET);
+                setUsers(data); // Asigna la respuesta al estado
+            } catch (error) {
+                setError('Error al obtener usuarios');
+                console.error('Error fetching users:', error);
+            } finally {
+                setLoading(false); // Finaliza la carga
+            }
+        };
+
+        fetchUsers();
+    }, []);
+
+    if (loading) {
+        return <p>Cargando usuarios...</p>;
+    }
+
+    if (error) {
+        return <p>{error}</p>;
+    }
+
+    return (
+        <ul>
+            {users.map((user) => (
+                <li key={user.id}>
+                    {user.name} - {user.email}
+                </li>
+            ))}
+        </ul>
+    );
+};
+
+export default UserList;
+
+```
+
+Código de la función
+
+```javascript
+enum MethodType {
+	GET = 'GET',
+	POST = 'POST',
+	PUT = 'PUT',
+	DELETE = 'DELETE',
+}
+
+enum ResponseType {
+	JSON = 'json',
+	BLOB = 'blob',
+	TEXT = 'text',
+}
+
+export const fetchMethod = async <T>(
+	url: string,
+	method: MethodType = MethodType.GET,
+	body: object | null = null,
+	responseType: ResponseType = ResponseType.JSON,
+	options: RequestInit = {},
+	requireAuth: boolean = true
+): Promise<T> => {
+	const token = requireAuth ? localStorage.getItem('token') : null;
+
+	const headers: HeadersInit = {
+		'Content-Type': 'application/json',
+		...(token && { Authorization: `Bearer ${token}` }),
+		...(options.headers || {}),
+	};
+
+	const requestOptions: RequestInit = {
+		method,
+		headers,
+		...options,
+	};
+
+	if (body !== null && typeof body === 'object') {
+		requestOptions.body = JSON.stringify(body);
+	}
+
+	try {
+		const response = await fetch(url, requestOptions);
+
+		if (!response.ok) {
+			throw new Error(
+				`Error en la solicitud a ${url}: ${response.statusText} (Status: ${response.status})`
+			);
+		}
+
+		switch (responseType) {
+			case ResponseType.JSON:
+				return (await response.json()) as T;
+			case ResponseType.BLOB:
+				return (await response.blob()) as unknown as T;
+			case ResponseType.TEXT:
+				return (await response.text()) as unknown as T;
+			default:
+				throw new Error('Tipo de respuesta no soportado');
+		}
+	} catch (error) {
+		console.error('Error en la solicitud:', error);
+		throw error;
+	}
+};
+
+```
 
 ## Este readme se estará actualizando...
