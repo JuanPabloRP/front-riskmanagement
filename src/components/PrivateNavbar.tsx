@@ -1,6 +1,7 @@
 import { Avatar, Dropdown, Navbar } from 'flowbite-react';
 import { useNavigate } from 'react-router-dom';
-import { paths } from '../utils/constants';
+import { paths } from '../shared/constants/constants';
+import { NavLink } from 'react-router-dom';
 
 const PrivateNavbar = () => {
 	const navigate = useNavigate();
@@ -77,9 +78,10 @@ const PrivateNavbar = () => {
 				<Navbar.Link href="#" className="text-text-tertiary">
 					Inicio
 				</Navbar.Link>
-				<Navbar.Link href="#" className="text-text-tertiary/50">
-					Riesgos
-				</Navbar.Link>
+
+				<NavLink className="text-text-tertiary/50" to={paths.signupFullRoute}>
+					Registrar usuario
+				</NavLink>
 			</Navbar.Collapse>
 		</Navbar>
 	);

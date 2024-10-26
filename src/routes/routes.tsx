@@ -1,12 +1,12 @@
-import {  Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 // Contants
-import { paths } from '../utils/constants';
+import { paths } from '../shared/constants/constants';
 
 // Components
 import Index from '../pages/public/home/Index';
 import SignIn from '../pages/public/auth/signin/SignIn';
-import SignUp from '../pages/public/auth/SignUp';
+import SignUp from '../pages/public/auth/signup/SignUp';
 import PrivateLayout from '../layouts/PrivateLayout';
 import PublicLayout from '../layouts/PublicLayout';
 import Home from '../pages/private/home/Home';

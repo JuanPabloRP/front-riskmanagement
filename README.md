@@ -191,4 +191,10 @@ export const fetchMethod = async <T>(
 
 ```
 
+# Mensajes flotantes
+
+[Página de los toast](https://react-hot-toast.com/)
+![alt text](src/assets/img/toastEjemplo.png)
+
+
 ## Este readme se estará actualizando...

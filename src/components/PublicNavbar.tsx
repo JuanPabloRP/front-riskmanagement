@@ -1,5 +1,5 @@
 import { Button, Navbar } from 'flowbite-react';
-import { paths } from '../utils/constants';
+import { paths } from '../shared/constants/constants';
 import { useNavigate } from 'react-router-dom';
 
 const PublicNavbar = () => {

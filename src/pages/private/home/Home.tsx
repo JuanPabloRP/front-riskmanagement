@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { paths } from '../../../utils/constants';
+import { paths } from '../../../shared/constants/constants';
 
 const Home = () => {
 	const links = [
