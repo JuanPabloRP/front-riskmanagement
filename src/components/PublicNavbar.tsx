@@ -1,6 +1,6 @@
 import { Button, Navbar } from 'flowbite-react';
-import { paths } from '../shared/constants/constants';
-import { useNavigate } from 'react-router-dom';
+import { PATHS } from '../shared/constants/routes.constant';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const PublicNavbar = () => {
 	const navigate = useNavigate();
@@ -10,6 +10,17 @@ const PublicNavbar = () => {
 		navigate(path);
 	};
 
+	const navbarRoutes = [
+		{
+			name: 'Inicio',
+			path: PATHS.publicHome,
+		},
+		{
+			name: 'Sobre nosotros',
+			path: PATHS.aboutUs,
+		},
+	];
+
 	return (
 		<Navbar
 			fluid
@@ -17,7 +28,7 @@ const PublicNavbar = () => {
 			className="bg-bg m-2 w-3/4 mx-auto rounded-xl border border-border sticky top-2 z-50"
 		>
 			<Navbar.Brand
-				onClick={(e) => handleNavigate(e, paths.publicHome)}
+				onClick={(e) => handleNavigate(e, PATHS.publicHome)}
 				className="flex gap-2 justify-center items-center hover:cursor-pointer"
 			>
 				<svg
@@ -45,30 +56,36 @@ const PublicNavbar = () => {
 					Gestión de riesgos
 				</span>
 			</Navbar.Brand>
-			<section className="flex md:order-2">
+			<section className="flex gap-2 md:order-2">
 				<Button
 					onClick={(e: React.MouseEvent<HTMLElement>) =>
-						handleNavigate(e, paths.signinFullRoute)
+						handleNavigate(e, PATHS.signupFullRoute)
+					}
+					className="bg-bg border border-border text-text-primary"
+				>
+					Registrarse
+				</Button>
+				<Button
+					onClick={(e: React.MouseEvent<HTMLElement>) =>
+						handleNavigate(e, PATHS.signinFullRoute)
 					}
 				>
 					Iniciar sesión
 				</Button>
 				<Navbar.Toggle />
 			</section>
-			<Navbar.Collapse>
-				<Navbar.Link
-					onClick={(e) => handleNavigate(e, paths.publicHome)}
-					active
-					className="hover:cursor-pointer text-text-tertiary"
-				>
-					Inicio
-				</Navbar.Link>
-				<Navbar.Link
-					onClick={(e) => handleNavigate(e, paths.aboutUs)}
-					className="hover:cursor-pointer text-text-tertiary/50"
-				>
-					Sobre nosotros
-				</Navbar.Link>
+			<Navbar.Collapse className="font-bold">
+				{navbarRoutes.map(({ name, path }) => (
+					<NavLink
+						key={path}
+						to={path}
+						className={({ isActive }) =>
+							isActive ? 'text-text-secondary' : 'text-text-tertiary'
+						}
+					>
+						{name}
+					</NavLink>
+				))}
 			</Navbar.Collapse>
 		</Navbar>
 	);
