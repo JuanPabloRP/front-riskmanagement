@@ -1,20 +1,20 @@
 import { Link } from 'react-router-dom';
-import { paths } from '../../../shared/constants/constants';
+import { PATHS } from '../../../shared/constants/routes.constant';
 
 const Index = () => {
 	const links = [
-		{ title: 'Playground', path: paths.playground },
-		{ title: 'Home público', path: paths.publicHome },
-		{ title: 'Sobre nosotros', path: paths.aboutUs },
-		{ title: 'Home privado', path: paths.privateHome },
-		{ title: 'Roles', path: paths.rolesFullRoute },
-		{ title: 'Usuarios', path: paths.usersFullRoute },
-		{ title: 'Amenazas', path: paths.threatsFullRoute },
-		{ title: 'Activos', path: paths.assetsFullRoute },
-		{ title: 'Vulnerabilidades', path: paths.vulnerabilitiesFullRoute },
-		{ title: 'Controles', path: paths.controlsFullRoute },
-		{ title: 'Plan de tratamiento', path: paths.treatmentPlanFullRoute },
-		{ title: 'Riesgos', path: paths.risksFullRoute },
+		{ title: 'Playground', path: PATHS.playground },
+		{ title: 'Home público', path: PATHS.publicHome },
+		{ title: 'Sobre nosotros', path: PATHS.aboutUs },
+		{ title: 'Home privado', path: PATHS.privateHome },
+		{ title: 'Roles', path: PATHS.rolesFullRoute },
+		{ title: 'Usuarios', path: PATHS.usersFullRoute },
+		{ title: 'Amenazas', path: PATHS.threatsFullRoute },
+		{ title: 'Activos', path: PATHS.assetsFullRoute },
+		{ title: 'Vulnerabilidades', path: PATHS.vulnerabilitiesFullRoute },
+		{ title: 'Controles', path: PATHS.controlsFullRoute },
+		{ title: 'Plan de tratamiento', path: PATHS.treatmentPlanFullRoute },
+		{ title: 'Riesgos', path: PATHS.risksFullRoute },
 	];
 
 	return (
