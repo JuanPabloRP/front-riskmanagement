@@ -3,11 +3,9 @@ import AppRoutes from './routes/routes';
 
 function App() {
 	return (
-	
-			<Router>
-				<AppRoutes />
-			</Router>
-		
+		<Router>
+			<AppRoutes />
+		</Router>
 	);
 }
 
