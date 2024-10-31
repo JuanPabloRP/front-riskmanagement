@@ -41,8 +41,6 @@ const SignUp = () => {
 	const roles = ROLES.filter((rol) => rol.value !== UserRolesEnum.SUPERADMIN);
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-		console.log(e);
-
 		e.preventDefault();
 
 		if (userInformation?.password !== userInformation?.passwordConfirmation) {
@@ -132,7 +130,8 @@ const SignUp = () => {
 					}
 					error={
 						userInformation.password !== userInformation.passwordConfirmation &&
-						userInformation.passwordConfirmation && userInformation?.passwordConfirmation?.length > 0
+						userInformation.passwordConfirmation &&
+						userInformation?.passwordConfirmation?.length > 0
 							? 'Las contraseñas no coinciden'
 							: ''
 					}

@@ -7,36 +7,47 @@ import {
 	HiTable,
 	HiUser,
 } from 'react-icons/hi';
+import { NavLink } from 'react-router-dom';
 
 export function PrivateSidebar() {
+	const sidebarRoutes = [
+		{
+			name: 'Dashboard',
+			icon: HiChartPie,
+			path: '/dashboard',
+		},
+		{
+			name: 'Inbox',
+			icon: HiInbox,
+			path: '/inbox',
+		},
+		{
+			name: 'Users',
+			icon: HiUser,
+			path: '/users',
+		},
+	];
+
 	return (
-		<Sidebar>
-			<Sidebar.Items>
-				<Sidebar.ItemGroup>
-					<Sidebar.Item href="#" icon={HiChartPie}>
-						Dashboard
+		<Sidebar className="w-fit bg-bg-surface-primary p-0">
+			<Sidebar.Items className="min-h-screen w-fit bg-bg-surface-primary p-0">
+				<Sidebar.ItemGroup className="w-fit bg-bg-surface-primary p-0">
+					{/*<Sidebar.Item href="#" icon={HiChartPie}>
+						<span className="hidden md:block">Dashboard</span>
 					</Sidebar.Item>
-					<Sidebar.Collapse icon={HiShoppingBag} label="E-commerce">
+					 	<Sidebar.Collapse icon={HiShoppingBag} label="E-commerce">
 						<Sidebar.Item href="#">Products</Sidebar.Item>
 						<Sidebar.Item href="#">Sales</Sidebar.Item>
 						<Sidebar.Item href="#">Refunds</Sidebar.Item>
 						<Sidebar.Item href="#">Shipping</Sidebar.Item>
-					</Sidebar.Collapse>
-					<Sidebar.Item href="#" icon={HiInbox}>
-						Inbox
-					</Sidebar.Item>
-					<Sidebar.Item href="#" icon={HiUser}>
-						Users
-					</Sidebar.Item>
-					<Sidebar.Item href="#" icon={HiShoppingBag}>
-						Products
-					</Sidebar.Item>
-					<Sidebar.Item href="#" icon={HiArrowSmRight}>
-						Sign In
-					</Sidebar.Item>
-					<Sidebar.Item href="#" icon={HiTable}>
-						Sign Up
-					</Sidebar.Item>
+					</Sidebar.Collapse> */}
+					{sidebarRoutes.map(({ name, icon, path }) => (
+						<NavLink key={path} to={path}>
+							<span className="hidden md:block text-text-secondary">
+								{name}
+							</span>
+						</NavLink>
+					))}
 				</Sidebar.ItemGroup>
 			</Sidebar.Items>
 		</Sidebar>

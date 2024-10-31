@@ -1,11 +1,13 @@
 import { Button, Navbar } from 'flowbite-react';
 import { PATHS } from '../shared/constants/routes.constant';
 import { NavLink, useNavigate } from 'react-router-dom';
+import RM_Button from '../shared/components/RM_Button';
+import RM_Link from '../shared/components/RM_Link';
 
 const PublicNavbar = () => {
 	const navigate = useNavigate();
 
-	const handleNavigate = (e: React.MouseEvent<HTMLElement>, path: string) => {
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		navigate(path);
 	};
@@ -57,21 +59,17 @@ const PublicNavbar = () => {
 				</span>
 			</Navbar.Brand>
 			<section className="flex gap-2 md:order-2">
-				<Button
-					onClick={(e: React.MouseEvent<HTMLElement>) =>
-						handleNavigate(e, PATHS.signupFullRoute)
-					}
-					className="bg-bg border border-border text-text-primary"
+				<RM_Link
+					to={PATHS.signupFullRoute}
+					color="primary"
+					variant="button"
+					hasBackground={false}
 				>
-					Registrarse
-				</Button>
-				<Button
-					onClick={(e: React.MouseEvent<HTMLElement>) =>
-						handleNavigate(e, PATHS.signinFullRoute)
-					}
-				>
-					Iniciar sesión
-				</Button>
+					<span>Registrarse</span>
+				</RM_Link>
+				<RM_Link to={PATHS.signinFullRoute} color="primary" variant="button">
+					<span>Iniciar sesión</span>
+				</RM_Link>
 				<Navbar.Toggle />
 			</section>
 			<Navbar.Collapse className="font-bold">
