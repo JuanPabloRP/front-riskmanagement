@@ -16,10 +16,6 @@ const PrivateNavbar = () => {
 			name: 'Activos',
 			path: PATHS.assetsFullRoute,
 		},
-		{
-			name: 'Registrar usuario',
-			path: PATHS.signupFullRoute,
-		},
 	];
 
 	return (
