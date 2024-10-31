@@ -1,27 +1,14 @@
 import { Link } from 'react-router-dom';
-import { PATHS } from '../../../shared/constants/routes.constant';
+import { LINKS, PATHS } from '../../../shared/constants/routes.constant';
 import { Button } from 'flowbite-react';
 import managementSvg from '../../../assets/svg/management_svg.svg';
 
 const Home = () => {
-	const links = [
-		{ title: 'Playground', path: PATHS.playground },
-		{ title: 'Home público', path: PATHS.publicHome },
-		{ title: 'Sobre nosotros', path: PATHS.aboutUs },
-		{ title: 'Home privado', path: PATHS.privateHome },
-		{ title: 'Roles', path: PATHS.rolesFullRoute },
-		{ title: 'Usuarios', path: PATHS.usersFullRoute },
-		{ title: 'Amenazas', path: PATHS.threatsFullRoute },
-		{ title: 'Activos', path: PATHS.assetsFullRoute },
-		{ title: 'Vulnerabilidades', path: PATHS.vulnerabilitiesFullRoute },
-		{ title: 'Controles', path: PATHS.controlsFullRoute },
-		{ title: 'Plan de tratamiento', path: PATHS.treatmentPlanFullRoute },
-		{ title: 'Riesgos', path: PATHS.risksFullRoute },
-	];
+	const links = LINKS;
 
 	return (
 		<>
-			<section className="flex flex-col justify-center items-center">
+			{/* <section className="flex flex-col justify-center items-center">
 				<h2>Secciones (ESTO SOLO ESTARÁ EN EL DESARROLLO) </h2>
 				<section className="flex flex-wrap justify-center items-center gap-3 my-5">
 					{links.map((link, index) => (
@@ -48,11 +35,11 @@ const Home = () => {
 						</>
 					))}
 				</section>
-			</section>
+			</section> */}
 			{/* 
 				NO TOCAR EL CÓDIGO QUE HAY DE AQUI HACÍA ABAJO
 			*/}
-			<section className="flex flex-col justify-center items-center p-2 hidden">
+			<section className="flex flex-col justify-center items-center p-2 ">
 				<div className="min-h-full">
 					<h1 className="text-4xl font-bold text-text-primary mt-5">
 						Panel de Control de Gestión de Riesgos
