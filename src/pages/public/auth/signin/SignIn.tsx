@@ -25,6 +25,7 @@ const SignIn = () => {
 		[field]: value,
 	}));
    };
+   
    const contarDigitos = (value: string | number) => {
 	const val = value.toString();
 	return val.length;
