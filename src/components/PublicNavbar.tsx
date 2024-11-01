@@ -1,25 +1,18 @@
-import { Button, Navbar } from 'flowbite-react';
+import { Navbar } from 'flowbite-react';
 import { PATHS } from '../shared/constants/routes.constant';
-import { NavLink, useNavigate } from 'react-router-dom';
-import RM_Button from '../shared/components/RM_Button';
+import { NavLink } from 'react-router-dom';
+
 import RM_Link from '../shared/components/RM_Link';
 
 const PublicNavbar = () => {
-	const navigate = useNavigate();
-
-	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-		navigate(path);
-	};
-
 	const navbarRoutes = [
 		{
 			name: 'Inicio',
-			path: PATHS.publicHome,
+			path: PATHS.public.home,
 		},
 		{
 			name: 'Sobre nosotros',
-			path: PATHS.aboutUs,
+			path: PATHS.public.aboutUs,
 		},
 	];
 
@@ -30,7 +23,7 @@ const PublicNavbar = () => {
 			className="bg-bg m-2 w-3/4 mx-auto rounded-xl border border-border sticky top-2 z-50"
 		>
 			<Navbar.Brand
-				onClick={(e) => handleNavigate(e, PATHS.publicHome)}
+				onClick={(e) => handleNavigate(e, PATHS.public.home)}
 				className="flex gap-2 justify-center items-center hover:cursor-pointer"
 			>
 				<svg
@@ -60,14 +53,14 @@ const PublicNavbar = () => {
 			</Navbar.Brand>
 			<section className="flex gap-2 md:order-2">
 				<RM_Link
-					to={PATHS.signupFullRoute}
+					to={PATHS.public.auth.signup}
 					color="primary"
 					variant="button"
 					hasBackground={false}
 				>
 					<span>Registrarse</span>
 				</RM_Link>
-				<RM_Link to={PATHS.signinFullRoute} color="primary" variant="button">
+				<RM_Link to={PATHS.public.auth.signin} color="primary" variant="button">
 					<span>Iniciar sesión</span>
 				</RM_Link>
 				<Navbar.Toggle />

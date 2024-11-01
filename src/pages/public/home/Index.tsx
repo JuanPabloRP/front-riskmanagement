@@ -1,21 +1,9 @@
 import { Link } from 'react-router-dom';
-import { PATHS } from '../../../shared/constants/routes.constant';
+import { LINKS, PATHS } from '../../../shared/constants/routes.constant';
+import RM_Link from '../../../shared/components/RM_Link';
 
 const Index = () => {
-	const links = [
-		{ title: 'Playground', path: PATHS.playground },
-		{ title: 'Home público', path: PATHS.publicHome },
-		{ title: 'Sobre nosotros', path: PATHS.aboutUs },
-		{ title: 'Home privado', path: PATHS.privateHome },
-		{ title: 'Roles', path: PATHS.rolesFullRoute },
-		{ title: 'Usuarios', path: PATHS.usersFullRoute },
-		{ title: 'Amenazas', path: PATHS.threatsFullRoute },
-		{ title: 'Activos', path: PATHS.assetsFullRoute },
-		{ title: 'Vulnerabilidades', path: PATHS.vulnerabilitiesFullRoute },
-		{ title: 'Controles', path: PATHS.controlsFullRoute },
-		{ title: 'Plan de tratamiento', path: PATHS.treatmentPlanFullRoute },
-		{ title: 'Riesgos', path: PATHS.risksFullRoute },
-	];
+	const links = LINKS;
 
 	return (
 		<div>
@@ -24,9 +12,9 @@ const Index = () => {
 				<h2 className="text-2xl text-text-tertiary ">Ir a la sección:</h2>
 				<section className="flex flex-col gap-1">
 					{links.map((link, index) => (
-						<Link key={index} to={link.path}>
+						<RM_Link key={index} to={link.path}>
 							{link.title}
-						</Link>
+						</RM_Link>
 					))}
 				</section>
 			</section>
