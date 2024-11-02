@@ -1,58 +1,14 @@
 import { Link } from 'react-router-dom';
-import { PATHS } from '../../../shared/constants/routes.constant';
+import { LINKS, PATHS } from '../../../shared/constants/routes.constant';
 import { Button } from 'flowbite-react';
 import managementSvg from '../../../assets/svg/management_svg.svg';
 
 const Home = () => {
-	const links = [
-		{ title: 'Playground', path: PATHS.playground },
-		{ title: 'Home público', path: PATHS.publicHome },
-		{ title: 'Sobre nosotros', path: PATHS.aboutUs },
-		{ title: 'Home privado', path: PATHS.privateHome },
-		{ title: 'Roles', path: PATHS.rolesFullRoute },
-		{ title: 'Usuarios', path: PATHS.usersFullRoute },
-		{ title: 'Amenazas', path: PATHS.threatsFullRoute },
-		{ title: 'Activos', path: PATHS.assetsFullRoute },
-		{ title: 'Vulnerabilidades', path: PATHS.vulnerabilitiesFullRoute },
-		{ title: 'Controles', path: PATHS.controlsFullRoute },
-		{ title: 'Plan de tratamiento', path: PATHS.treatmentPlanFullRoute },
-		{ title: 'Riesgos', path: PATHS.risksFullRoute },
-	];
+	const links = LINKS;
 
 	return (
 		<>
-			<section className="flex flex-col justify-center items-center">
-				<h2>Secciones (ESTO SOLO ESTARÁ EN EL DESARROLLO) </h2>
-				<section className="flex flex-wrap justify-center items-center gap-3 my-5">
-					{links.map((link, index) => (
-						<>
-							<Link
-								key={index}
-								to={link.path}
-								className="min-w-36 max-w-sm bg-bg-surface-primary hover:bg-bg-fill-hover focus:bg-bg-fill-hover text-text-primary border border-border-secondary rounded-md p-3 flex justify-center items-center gap-2"
-							>
-								<span>{link.title}</span>
-								<svg
-									className="-mr-1 ml-2 h-4 w-4"
-									fill="currentColor"
-									viewBox="0 0 20 20"
-									xmlns="http://www.w3.org/2000/svg"
-								>
-									<path
-										fillRule="evenodd"
-										d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-										clipRule="evenodd"
-									/>
-								</svg>
-							</Link>
-						</>
-					))}
-				</section>
-			</section>
-			{/* 
-				NO TOCAR EL CÓDIGO QUE HAY DE AQUI HACÍA ABAJO
-			*/}
-			<section className="flex flex-col justify-center items-center p-2 hidden">
+			<section className="flex flex-col justify-center items-center p-2 ">
 				<div className="min-h-full">
 					<h1 className="text-4xl font-bold text-text-primary mt-5">
 						Panel de Control de Gestión de Riesgos
@@ -95,7 +51,7 @@ const Home = () => {
 				</div>
 
 				<section className="my-5 flex flex-col justify-center items-center  gap-2 p-3">
-					<section className=" flex flex-wrap justify-start items-start md:max-w-screen gap-2 p-3 ">
+					<section className=" flex flex-wrap justify-center items-start md:max-w-screen gap-2 p-3 ">
 						<section className="border border-border hover:bg-bg-surface-primary/20 hover:border-border-secondary rounded-md p-4 md:min-w-96 flex justify-between ">
 							<section>
 								<h2 className="text-text-tertiary/90">Riesgos totales</h2>

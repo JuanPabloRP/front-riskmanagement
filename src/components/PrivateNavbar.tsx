@@ -11,21 +11,12 @@ const PrivateNavbar = () => {
 		navigate(path);
 	};
 
-	const navbarRoutes = [
-		{
-			name: 'Activos',
-			path: PATHS.assetsFullRoute,
-		},
-		{
-			name: 'Registrar usuario',
-			path: PATHS.signupFullRoute,
-		},
-	];
+	const navbarRoutes = [{}];
 
 	return (
-		<Navbar className="bg-bg m-2 w-3/4 mx-auto rounded-xl border border-border sticky top-2 z-50">
+		<Navbar className="bg-bg m-2 w-3/4 mx-auto rounded-xl border border-border sticky top-2 z-50 ">
 			<Navbar.Brand
-				onClick={(e) => handleNavigate(e, PATHS.privateHome)}
+				onClick={(e) => handleNavigate(e, PATHS.private.home)}
 				className="flex gap-2 justify-center items-center hover:cursor-pointer"
 			>
 				<svg
