@@ -1,14 +1,20 @@
-import { Button, Navbar } from 'flowbite-react';
-import { paths } from '../shared/constants/constants';
-import { useNavigate } from 'react-router-dom';
+import { Navbar } from 'flowbite-react';
+import { PATHS } from '../shared/constants/routes.constant';
+import { NavLink } from 'react-router-dom';
+
+import RM_Link from '../shared/components/RM_Link';
 
 const PublicNavbar = () => {
-	const navigate = useNavigate();
-
-	const handleNavigate = (e: React.MouseEvent<HTMLElement>, path: string) => {
-		e.preventDefault();
-		navigate(path);
-	};
+	const navbarRoutes = [
+		{
+			name: 'Inicio',
+			path: PATHS.public.home,
+		},
+		{
+			name: 'Sobre nosotros',
+			path: PATHS.public.aboutUs,
+		},
+	];
 
 	return (
 		<Navbar
@@ -17,7 +23,7 @@ const PublicNavbar = () => {
 			className="bg-bg m-2 w-3/4 mx-auto rounded-xl border border-border sticky top-2 z-50"
 		>
 			<Navbar.Brand
-				onClick={(e) => handleNavigate(e, paths.publicHome)}
+				onClick={(e) => handleNavigate(e, PATHS.public.home)}
 				className="flex gap-2 justify-center items-center hover:cursor-pointer"
 			>
 				<svg
@@ -45,30 +51,32 @@ const PublicNavbar = () => {
 					Gestión de riesgos
 				</span>
 			</Navbar.Brand>
-			<section className="flex md:order-2">
-				<Button
-					onClick={(e: React.MouseEvent<HTMLElement>) =>
-						handleNavigate(e, paths.signinFullRoute)
-					}
+			<section className="flex gap-2 md:order-2">
+				<RM_Link
+					to={PATHS.public.auth.signup}
+					color="primary"
+					variant="button"
+					hasBackground={false}
 				>
-					Iniciar sesión
-				</Button>
+					<span>Registrarse</span>
+				</RM_Link>
+				<RM_Link to={PATHS.public.auth.signin} color="primary" variant="button">
+					<span>Iniciar sesión</span>
+				</RM_Link>
 				<Navbar.Toggle />
 			</section>
-			<Navbar.Collapse>
-				<Navbar.Link
-					onClick={(e) => handleNavigate(e, paths.publicHome)}
-					active
-					className="hover:cursor-pointer text-text-tertiary"
-				>
-					Inicio
-				</Navbar.Link>
-				<Navbar.Link
-					onClick={(e) => handleNavigate(e, paths.aboutUs)}
-					className="hover:cursor-pointer text-text-tertiary/50"
-				>
-					Sobre nosotros
-				</Navbar.Link>
+			<Navbar.Collapse className="font-bold">
+				{navbarRoutes.map(({ name, path }) => (
+					<NavLink
+						key={path}
+						to={path}
+						className={({ isActive }) =>
+							isActive ? 'text-text-secondary' : 'text-text-tertiary'
+						}
+					>
+						{name}
+					</NavLink>
+				))}
 			</Navbar.Collapse>
 		</Navbar>
 	);
