@@ -7,10 +7,12 @@ import { PATHS } from '../shared/constants/routes.constant';
 import Index from '../pages/public/home/Index';
 import SignIn from '../pages/public/auth/signin/SignIn';
 import SignUp from '../pages/public/auth/signup/SignUp';
+import NewControl from '../pages/Controles/NewControl';
 import PrivateLayout from '../layouts/PrivateLayout';
 import PublicLayout from '../layouts/PublicLayout';
 import Home from '../pages/private/home/Home';
 import Playground from '../pages/playground/Playground';
+import ListaControles from '../pages/Controles/EditionControl';
 
 const AppRoutes = () => {
 	return (
@@ -20,6 +22,14 @@ const AppRoutes = () => {
 			{/* Rutas privadas de la aplicación, todas las que van despues de registrarse o iniciar sesión */}
 			<Route path={PATHS.private.home} element={<PrivateLayout />}>
 				<Route path="" element={<Home />} />
+				<Route path={PATHS.private.controls.create} element={<NewControl />} />
+				<Route path={PATHS.private.controls.base} element={<ListaControles />} />
+			</Route>
+
+			{/* Rutas para registrarse o iniciar sesión */}
+			<Route path={PATHS.public.auth.base}>
+				<Route path={PATHS.public.auth.signin} element={<SignIn />} />
+				<Route path={PATHS.public.auth.signup} element={<SignUp />} />
 			</Route>
 
 			{/* Ruta principal a la que se entra la primera vez que se entra a la página */}
