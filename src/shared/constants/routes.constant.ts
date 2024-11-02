@@ -75,5 +75,5 @@ export const LINKS = [
 	{ title: 'Controles', path: PATHS.private.controls.base },
 	{ title: 'Plan de tratamiento', path: PATHS.private.treatmentPlan.base },
 	{ title: 'Riesgos', path: PATHS.private.risks.base },
-	
+
 ]
