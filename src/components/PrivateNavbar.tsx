@@ -1,6 +1,6 @@
 import { Avatar, Dropdown, Navbar } from 'flowbite-react';
 import { useNavigate } from 'react-router-dom';
-import { paths } from '../shared/constants/constants';
+import { PATHS } from '../shared/constants/routes.constant';
 import { NavLink } from 'react-router-dom';
 
 const PrivateNavbar = () => {
@@ -11,10 +11,12 @@ const PrivateNavbar = () => {
 		navigate(path);
 	};
 
+	const navbarRoutes = [{}];
+
 	return (
-		<Navbar className="bg-bg m-2 w-3/4 mx-auto rounded-xl border border-border sticky top-2 z-50">
+		<Navbar className="bg-bg m-2 w-3/4 mx-auto rounded-xl border border-border sticky top-2 z-50 ">
 			<Navbar.Brand
-				onClick={(e) => handleNavigate(e, paths.publicHome)}
+				onClick={(e) => handleNavigate(e, PATHS.private.home)}
 				className="flex gap-2 justify-center items-center hover:cursor-pointer"
 			>
 				<svg
@@ -62,10 +64,10 @@ const PrivateNavbar = () => {
 						</span>
 					</Dropdown.Header>
 					<Dropdown.Item className="text-text-primary hover:bg-bg-fill-hover active:bg-bg-fill-active focus:bg-bg-fill-active">
-						Riesgos
+						Perfil
 					</Dropdown.Item>
 					<Dropdown.Item className="text-text-primary hover:bg-bg-fill-hover active:bg-bg-fill-active focus:bg-bg-fill-active">
-						Plan de tratamiento
+						Configuración
 					</Dropdown.Item>
 					<Dropdown.Divider className="bg-bg-surface-primary" />
 					<Dropdown.Item className="text-text-danger hover:bg-bg-fill-hover/50 active:bg-bg-fill-active/50 focus:bg-bg-fill-active/50">
@@ -75,13 +77,17 @@ const PrivateNavbar = () => {
 				<Navbar.Toggle />
 			</div>
 			<Navbar.Collapse className="font-bold">
-				<Navbar.Link href="#" className="text-text-tertiary">
-					Inicio
-				</Navbar.Link>
-
-				<NavLink className="text-text-tertiary/50" to={paths.signupFullRoute}>
-					Registrar usuario
-				</NavLink>
+				{navbarRoutes.map(({ name, path }) => (
+					<NavLink
+						key={path}
+						to={path}
+						className={({ isActive }) =>
+							isActive ? 'text-text-secondary' : 'text-text-tertiary'
+						}
+					>
+						{name}
+					</NavLink>
+				))}
 			</Navbar.Collapse>
 		</Navbar>
 	);
