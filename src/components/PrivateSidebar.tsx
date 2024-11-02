@@ -210,7 +210,7 @@ export default function PrivateSidebar({ children }: SidebarProps) {
 							</RM_Link>
 							<RM_Link to={PATHS.private.assets.create}>
 								{' '}
-								<span>Ver activos</span>{' '}
+								<span>Crear activo</span>{' '}
 							</RM_Link>
 						</RM_Dropdown>
 
