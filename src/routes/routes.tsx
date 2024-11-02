@@ -11,6 +11,7 @@ import PrivateLayout from '../layouts/PrivateLayout';
 import PublicLayout from '../layouts/PublicLayout';
 import Home from '../pages/private/home/Home';
 import Playground from '../pages/playground/Playground';
+import Asset  from '../pages/private/activos/Asset';
 
 const AppRoutes = () => {
 	return (
@@ -19,6 +20,10 @@ const AppRoutes = () => {
 
 			{/* Rutas privadas de la aplicación, todas las que van despues de registrarse o iniciar sesión */}
 			<Route path={PATHS.private.home} element={<PrivateLayout />}>
+			<Route path={PATHS.private.home}>
+				<Route path={PATHS.private.assets.base} element={<Asset />} />		
+			</Route>
+			
 				<Route path="" element={<Home />} />
 			</Route>
 
@@ -28,6 +33,7 @@ const AppRoutes = () => {
 				<Route path={PATHS.public.auth.base}>
 					<Route path={PATHS.public.auth.signup} element={<SignUp />} />
 					<Route path={PATHS.public.auth.signin} element={<SignIn />} />
+					
 				</Route>
 			</Route>
 
@@ -36,6 +42,7 @@ const AppRoutes = () => {
 				path={PATHS.notFound}
 				element={
 					<h1 className="text-red-500 font-bold text-3xl">
+						
 						Error, no hay nada aquí
 					</h1>
 				}
