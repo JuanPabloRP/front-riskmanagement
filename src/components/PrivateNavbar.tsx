@@ -11,12 +11,7 @@ const PrivateNavbar = () => {
 		navigate(path);
 	};
 
-	const navbarRoutes = [
-		{
-			name: 'Activos',
-			path: PATHS.private.assets.base,
-		},
-	];
+	const navbarRoutes = [{}];
 
 	return (
 		<Navbar className="bg-bg m-2 w-3/4 mx-auto rounded-xl border border-border sticky top-2 z-50 ">
