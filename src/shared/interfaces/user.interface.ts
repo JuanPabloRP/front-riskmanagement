@@ -4,6 +4,7 @@ export interface UserType {
 	lastName: string;
 	email?: string;
 	password: string;
+	passwordConfirmation?: string;
 	identification: string;
 	birthDate: Date | string;
 	role: string;
