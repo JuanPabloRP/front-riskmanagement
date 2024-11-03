@@ -65,9 +65,9 @@ export default {
 				// Colores para los botones
 				btn: {
 					primary: {
-						DEFAULT: colors.cyan[600],
-						hover: colors.cyan[500],
-						active: colors.cyan[400],
+						DEFAULT: colors.cyan[800],
+						hover: colors.cyan[600],
+						active: colors.cyan[500],
 						disabled: colors.cyan[300],
 					},
 					danger: {

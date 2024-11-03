@@ -1,4 +1,4 @@
-import { MethodType, ResponseType } from "../shared/enums/httpEnums";
+import { MethodType, ResponseType } from '../shared/enums/httpEnums';
 
 
 export const fetchMethod = async <T>(
