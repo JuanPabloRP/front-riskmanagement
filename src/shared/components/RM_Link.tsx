@@ -7,7 +7,7 @@ interface LinkProps {
 	children: React.ReactNode;
 	className?: string;
 	variant?: 'link' | 'button';
-	color?: 'primary' | 'secondary' | 'danger' | 'success';
+	color?: 'primary' | 'secondary' | 'danger' | 'success' | 'neutral';
 	hasBackground?: boolean;
 	icon?: React.ReactNode;
 	onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
@@ -24,37 +24,46 @@ const RM_Link: React.FC<LinkProps> = ({
 	onClick,
 }) => {
 	const linkClass = classNames(
-		'transition font-medium flex items-center',
+		'transition duration-200 font-medium flex items-center rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2',
 		{
-			// Estilos de botón con fondo, según color
-			'px-3 py-2 rounded-lg text-white bg-btn-primary hover:bg-btn-primary-hover focus:bg-btn-primary-hover active:bg-btn-primary-active':
+			// Botón con fondo
+			'px-3 py-2 text-white border-transparent':
+				variant === 'button' && hasBackground,
+			'bg-btn-primary hover:bg-btn-primary-hover active:bg-btn-primary-active focus:ring-btn-primary':
 				variant === 'button' && color === 'primary' && hasBackground,
-			'px-3 py-2 rounded-lg text-white bg-secondary hover:bg-secondary-hover focus:bg-secondary-hover active:bg-secondary-active':
+			'bg-secondary hover:bg-secondary-hover active:bg-secondary-active focus:ring-secondary':
 				variant === 'button' && color === 'secondary' && hasBackground,
-			'px-3 py-2 rounded-lg text-white bg-red-600 hover:bg-red-700 focus:bg-red-700 active:bg-red-800':
+			'bg-red-600 hover:bg-red-700 active:bg-red-800 focus:ring-red-600':
 				variant === 'button' && color === 'danger' && hasBackground,
-			'px-3 py-2 rounded-lg text-white bg-green-600 hover:bg-green-700 focus:bg-green-700 active:bg-green-800':
+			'bg-green-600 hover:bg-green-700 active:bg-green-800 focus:ring-green-600':
 				variant === 'button' && color === 'success' && hasBackground,
+			'bg-gray-600 hover:bg-gray-700 active:bg-gray-800 focus:ring-gray-600':
+				variant === 'button' && color === 'neutral' && hasBackground,
 
-			// Estilos de botón sin fondo, solo borde y texto, según color
-			'text-btn-primary border border-btn-primary px-3 py-2 rounded-lg hover:bg-btn-primary-hover focus:bg-btn-primary-hover active:bg-btn-primary-active':
+			// Botón sin fondo, con borde y texto
+			'px-3 py-2 border  text-text-tertiary  border-btn-primary-active hover:bg-btn-primary-light active:bg-btn-primary-active focus:ring-btn-primary':
 				variant === 'button' && color === 'primary' && !hasBackground,
-			'text-secondary border border-secondary px-3 py-2 rounded-lg hover:bg-secondary-hover focus:bg-secondary-hover active:bg-secondary-active':
+			'px-3 py-2 border border-secondary text-text-secondary hover:bg-secondary-light active:bg-secondary-active focus:ring-secondary':
 				variant === 'button' && color === 'secondary' && !hasBackground,
-			'text-red-600 border border-red-600 px-3 py-2 rounded-lg hover:bg-red-700 focus:bg-red-700 active:bg-red-800':
+			'px-3 py-2 border border-red-600 text-red-600 hover:bg-red-100 active:bg-red-200 focus:ring-red-600':
 				variant === 'button' && color === 'danger' && !hasBackground,
-			'text-green-600 border border-green-600 px-3 py-2 rounded-lg hover:bg-green-700 focus:bg-green-700 active:bg-green-800':
+			'px-3 py-2 border border-green-600 text-green-600 hover:bg-green-100 active:bg-green-200 focus:ring-green-600':
 				variant === 'button' && color === 'success' && !hasBackground,
+			'px-3 py-2 border border-gray-600 text-gray-600 hover:bg-gray-100 active:bg-gray-200 focus:ring-gray-600':
+				variant === 'button' && color === 'neutral' && !hasBackground,
 
-			// Estilos de enlace simple según color
-			'text-cyan-600 hover:text-cyan-700 underline':
+			// Estilos de enlace
+			underline: variant === 'link',
+			'text-btn-primary hover:text-btn-primary-hover focus:ring-btn-primary':
 				variant === 'link' && color === 'primary',
-			'text-gray-600 hover:text-gray-700 underline':
+			'text-secondary hover:text-secondary-hover focus:ring-secondary':
 				variant === 'link' && color === 'secondary',
-			'text-red-600 hover:text-red-700 underline':
+			'text-red-600 hover:text-red-700 focus:ring-red-600':
 				variant === 'link' && color === 'danger',
-			'text-green-600 hover:text-green-700 underline':
+			'text-green-600 hover:text-green-700 focus:ring-green-600':
 				variant === 'link' && color === 'success',
+			'text-gray-600 hover:text-gray-700 focus:ring-gray-600':
+				variant === 'link' && color === 'neutral',
 		},
 		className
 	);

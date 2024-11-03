@@ -66,6 +66,14 @@ const SignUp = () => {
 			return;
 		}
 
+		if (
+			Number.parseInt(userInformation?.identification) < 1000000 ||
+			Number.parseInt(userInformation?.identification) > 9999999999
+		) {
+			notifyError('Cédula inválida');
+			return;
+		}
+
 		fetchMethod(
 			`${API_URL}/v1/user`,
 			MethodType.POST,
