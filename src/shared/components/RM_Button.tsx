@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 interface ButtonProps {
-	children: React.ReactNode;
+	children?: React.ReactNode;
 	icon?: React.ReactNode;
 	disabled?: boolean;
 	onClick: (e: React.FormEvent<HTMLFormElement>) => void;
@@ -28,7 +28,7 @@ const RM_Button: React.FC<ButtonProps> = ({
 			// Estilos cuando hasBackground es true
 			'bg-btn-primary hover:bg-btn-primary-hover focus:bg-btn-primary-hover active:bg-btn-primary-active text-white border border-transparent':
 				hasBackground && variant === 'primary',
-			'bg-secondary hover:bg-secondary-hover focus:bg-secondary-hover active:bg-secondary-active text-white border border-transparent':
+			'bg-btn-danger hover:bg-btn-danger-hover  focus:bg-btn-danger-hover active:bg-sbtn-danger-active text-white border border-transparent':
 				hasBackground && variant === 'danger',
 			'bg-btn-neutral hover:bg-btn-neutral-hover focus:bg-btn-neutral-hover active:bg-btn-neutral-active text-text-primary border border-transparent':
 				hasBackground && variant === 'neutral',
@@ -51,13 +51,13 @@ const RM_Button: React.FC<ButtonProps> = ({
 	return (
 		<div className="w-full md:w-fit">
 			<button
-				className={buttonClass}
+				className={`p-2 ${buttonClass}`}
 				onClick={(e) => onClick(e)}
 				type={type}
 				disabled={disabled}
 			>
 				{icon && (
-					<span className="absolute inset-y-0 left-0 flex items-center pl-3">
+					<span className={` flex items-center ${children ? 'pl-3' : 'p-0'}`}>
 						{icon}
 					</span>
 				)}
