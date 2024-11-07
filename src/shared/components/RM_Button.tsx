@@ -1,9 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
 
-
 interface ButtonProps {
-	children: React.ReactNode;
+	children?: React.ReactNode;
 	icon?: React.ReactNode;
 	disabled?: boolean;
 	onClick: (e: React.FormEvent<HTMLFormElement>) => void;
@@ -29,7 +28,7 @@ const RM_Button: React.FC<ButtonProps> = ({
 			// Estilos cuando hasBackground es true
 			'bg-btn-primary hover:bg-btn-primary-hover focus:bg-btn-primary-hover active:bg-btn-primary-active text-white border border-transparent':
 				hasBackground && variant === 'primary',
-			'bg-secondary hover:bg-secondary-hover focus:bg-secondary-hover active:bg-secondary-active text-white border border-transparent':
+			'bg-btn-danger hover:bg-btn-danger-hover  focus:bg-btn-danger-hover active:bg-sbtn-danger-active text-white border border-transparent':
 				hasBackground && variant === 'danger',
 			'bg-btn-neutral hover:bg-btn-neutral-hover focus:bg-btn-neutral-hover active:bg-btn-neutral-active text-text-primary border border-transparent':
 				hasBackground && variant === 'neutral',
@@ -37,9 +36,9 @@ const RM_Button: React.FC<ButtonProps> = ({
 				hasBackground && variant === 'success',
 
 			// Estilos cuando hasBackground es false: cambia el color de texto y borde
-			'text-btn-primary border-btn-primary border hover:bg-btn-primary-hover focus:bg-btn-primary-hover active:bg-btn-primary-active':
+			'text-btn-secondary border-btn-secondary border hover:bg-btn-primary-hover focus:bg-btn-primary-hover active:bg-btn-primary-active':
 				!hasBackground && variant === 'primary',
-			'text-secondary border-secondary border hover:bg-secondary-hover focus:bg-secondary-hover active:bg-secondary-active':
+			' text-text-secondary border border-btn-primary-active  hover:bg-secondary-hover focus:bg-secondary-hover active:bg-secondary-active':
 				!hasBackground && variant === 'danger',
 			'text-btn-neutral border-btn-neutral border hover:bg-btn-neutral-hover focus:bg-btn-neutral-hover active:bg-btn-neutral-active':
 				!hasBackground && variant === 'neutral',
@@ -52,13 +51,13 @@ const RM_Button: React.FC<ButtonProps> = ({
 	return (
 		<div className="w-full md:w-fit">
 			<button
-				className={buttonClass}
+				className={`p-2 ${buttonClass}`}
 				onClick={(e) => onClick(e)}
 				type={type}
 				disabled={disabled}
 			>
 				{icon && (
-					<span className="absolute inset-y-0 left-0 flex items-center pl-3">
+					<span className={` flex items-center ${children ? 'pl-3' : 'p-0'}`}>
 						{icon}
 					</span>
 				)}

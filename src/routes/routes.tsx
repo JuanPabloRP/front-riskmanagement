@@ -11,7 +11,7 @@ import PrivateLayout from '../layouts/PrivateLayout';
 import PublicLayout from '../layouts/PublicLayout';
 import Home from '../pages/private/home/Home';
 import Playground from '../pages/playground/Playground';
-import Asset  from '../pages/private/activos/Asset';
+import Asset  from '../pages/private/asset/Asset';
 
 const AppRoutes = () => {
 	return (
