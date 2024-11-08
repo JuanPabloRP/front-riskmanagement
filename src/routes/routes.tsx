@@ -12,6 +12,7 @@ import PublicLayout from '../layouts/PublicLayout';
 import Home from '../pages/private/home/Home';
 import Playground from '../pages/playground/Playground';
 import Asset  from '../pages/private/asset/Asset';
+import ListAssets from '../pages/private/asset/ListAssets';
 
 const AppRoutes = () => {
 	return (
@@ -21,7 +22,8 @@ const AppRoutes = () => {
 			{/* Rutas privadas de la aplicación, todas las que van despues de registrarse o iniciar sesión */}
 			<Route path={PATHS.private.home} element={<PrivateLayout />}>
 			<Route path={PATHS.private.home}>
-				<Route path={PATHS.private.assets.base} element={<Asset />} />		
+				<Route path={PATHS.private.assets.create} element={<Asset />} />
+				<Route path={PATHS.private.assets.base} element={<ListAssets />} />		
 			</Route>
 			
 				<Route path="" element={<Home />} />
