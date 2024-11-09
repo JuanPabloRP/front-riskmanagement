@@ -11,6 +11,8 @@ import PrivateLayout from '../layouts/PrivateLayout';
 import PublicLayout from '../layouts/PublicLayout';
 import Home from '../pages/private/home/Home';
 import Playground from '../pages/playground/Playground';
+import Asset  from '../pages/private/asset/Asset';
+import ListAssets from '../pages/private/asset/ListAssets';
 import TreatmentPlan from '../pages/private/treatmentPlan/TreatmentPlan';
 import TreatmentPlanCreate from '../pages/private/treatmentPlan/TreatmentPlanCreate';
 
@@ -21,7 +23,9 @@ const AppRoutes = () => {
 
 			{/* Rutas privadas de la aplicación, todas las que van despues de registrarse o iniciar sesión */}
 			<Route path={PATHS.private.home} element={<PrivateLayout />}>
-				<Route path="" element={<Home />} />
+        <Route path="" element={<Home />} />
+				<Route path={PATHS.private.assets.base} element={<ListAssets />} />	
+				<Route path={PATHS.private.assets.create} element={<Asset />} />
 				<Route path={PATHS.private.treatmentPlan.base} element={<TreatmentPlan />} />
 				<Route path={PATHS.private.treatmentPlan.create} element={<TreatmentPlanCreate />} />
 			</Route>
