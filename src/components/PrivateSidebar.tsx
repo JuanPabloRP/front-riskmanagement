@@ -73,7 +73,7 @@ export default function PrivateSidebar({ children }: SidebarProps) {
 			>
 				<nav className="h-full overflow-y-auto p-4">
 					<div className="flex justify-between items-center mb-4">
-						<img src="../../../src/assets/img/profile.png" alt="" className='h-20 w-20'/>
+						
 						<h2
 							className={`text-xl font-bold ${
 								isSidebarOpen ? '' : 'lg:hidden'

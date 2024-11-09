@@ -13,6 +13,11 @@ import Home from '../pages/private/home/Home';
 import Playground from '../pages/playground/Playground';
 import Asset  from '../pages/private/activos/Asset';
 import UserProfile from '../pages/private/users/UserProfile';
+import CreateRole from '../pages/private/role/CreateRole';
+import ListRoles from '../pages/private/role/ListRoles';
+import ListAssets from '../pages/private/asset/ListAssets';
+import TreatmentPlan from '../pages/private/treatmentPlan/TreatmentPlan';
+import TreatmentPlanCreate from '../pages/private/treatmentPlan/TreatmentPlanCreate';
 
 const AppRoutes = () => {
 	return (
@@ -20,13 +25,22 @@ const AppRoutes = () => {
 			<Route path={PATHS.public.playground} element={<Playground />} />
 
 			{/* Rutas privadas de la aplicación, todas las que van despues de registrarse o iniciar sesión */}
-			<Route path={PATHS.private.home} element={<PrivateLayout />}>
-			<Route path={PATHS.private.home}>
-				<Route path={PATHS.private.assets.base} element={<Asset />} />
-				<Route path={PATHS.private.users.profile} element={<UserProfile />} />			
-			</Route>
+			<Route path={PATHS.private.home} element={<PrivateLayout />}>	
 			
 				<Route path="" element={<Home />} />
+
+				<Route path={PATHS.private.assets.base} element={<Asset />} />
+				<Route path={PATHS.private.users.profile} element={<UserProfile />} />		
+        
+				<Route path={PATHS.private.roles.create} element={<CreateRole />} />
+				<Route path={PATHS.private.roles.base} element={<ListRoles />} />
+        
+				<Route path={PATHS.private.assets.base} element={<ListAssets />} />	
+				<Route path={PATHS.private.assets.create} element={<Asset />} />
+        
+				<Route path={PATHS.private.treatmentPlan.base} element={<TreatmentPlan />} />
+				<Route path={PATHS.private.treatmentPlan.create} element={<TreatmentPlanCreate />} />
+        
 			</Route>
 
 			{/* Ruta principal a la que se entra la primera vez que se entra a la página */}
@@ -35,7 +49,6 @@ const AppRoutes = () => {
 				<Route path={PATHS.public.auth.base}>
 					<Route path={PATHS.public.auth.signup} element={<SignUp />} />
 					<Route path={PATHS.public.auth.signin} element={<SignIn />} />
-					
 				</Route>
 			</Route>
 
@@ -44,7 +57,6 @@ const AppRoutes = () => {
 				path={PATHS.notFound}
 				element={
 					<h1 className="text-red-500 font-bold text-3xl">
-						
 						Error, no hay nada aquí
 					</h1>
 				}

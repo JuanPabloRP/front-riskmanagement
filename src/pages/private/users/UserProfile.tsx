@@ -3,6 +3,32 @@ import { PATHS } from '../../../../src/shared/constants/routes.constant';
 
 const UserProfile = () =>{
 
+    const infoUser =[
+        {
+            text: "CORREO",
+            description: "jtejadabusta@gmail.com"
+        },{
+            text:"CARGO",
+            description:"Analista de riesgos"
+        },
+        {
+            text:"CEDULA",
+            description:"112636448"
+        },
+        {
+             text:"TELEFONO",
+             description:"2121232356464"
+        },
+        {
+            text:"CELULAR",
+            description:"+57 3042619703"
+        },
+        {
+            text:"DIRECCION",
+            description:"Cll 45 Sur Av galindo"
+        }
+    ]
+
     return(
         <section className="flex m-7 items-center flex-col gap-2 p-0 ml-30 ">
            <RM_Link
@@ -31,18 +57,24 @@ const UserProfile = () =>{
               } >
               <></>
           </RM_Link>
-          <div className=' bg-border-secondary w-10/12 flex items-start rounded-md p-1'>
-            <div className=" flex justify-center items-center flex-row gap-3 w-700 ml-5">
+          <div className=' bg-border-secondary w-2/4 flex items-start rounded-md p-1'>
+            <div className=" flex justify-center items-center flex-row gap-3 w-500 ml-5">
                <img className='w-40 h-40' src="../../../src/assets/img/profile.jpg" alt="" />
             <h1 className='mb-30 p-0 text-lg'>Juan Manuel Tejada Bustamante</h1 >
             </div>
           </div>
          
-          <section>
-            <span>jtejadabusta@gmail.com</span>
-             <span>Analista de riesgos</span>
-             <span>30/04/2003</span>
-             <span>+57 3042619703</span>
+          <section className='flex flex-wrap justify-between items-center gap-5  w-2/4 px-4'>
+           {
+            infoUser.map(({text, description})=>(
+                <div className='w-1/4'>
+                    <h3>{text}</h3>
+                    <p>{description}</p>
+                </div>
+
+            
+            ))
+           }
            </section>
 
         </section>

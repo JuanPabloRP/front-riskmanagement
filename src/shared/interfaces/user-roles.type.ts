@@ -3,10 +3,7 @@ export interface RolesType {
 }
 
 export interface RoleType {
-	id: number;
+	id?: number;
 	name: string;
 	description: string;
-	createdAt: Date;
-	updatedAt: Date;
-	deletedAt: Date;
 }
