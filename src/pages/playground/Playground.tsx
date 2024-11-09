@@ -3,8 +3,7 @@ const Playground = () => {
 		<main className="flex flex-col justify-center items-center min-h-screen max-w-3xl">
 			<h1>
 				En esta sección podran probar colores de los textos, de fondo, border,
-				etc. (Pueden ir hasta App.tsx y comentar donde se llama esto por si no
-				quieren ver el playground)
+				etc.
 			</h1>
 			<div>
 				<h2 className="text-2xl mt-2">Colores texto</h2>
