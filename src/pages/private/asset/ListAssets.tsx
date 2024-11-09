@@ -1,81 +1,70 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const ListAssets = () => {
-  const [asset, setAsset] = useState({
-    name: '',
-    location: '',
-    value: '',
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setAsset((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Activo registrado:', asset);
-  };
+const AssetList = () => {
+  // Datos de ejemplo para mostrar activos
+  const assets = [
+    { id: 777, name: 'Nombre de activo', type: 'Tipo de activo' },
+    { id: 778, name: 'Nombre de activo', type: 'Tipo de activo' },
+    { id: 779, name: 'Nombre de activo', type: 'Tipo de activo' },
+  ];
 
   return (
-    <section className="flex items-center justify-center p-3 h-screen">
-      <div className="w-full max-w-md">
-        {/* Titulo visible con estilo */}
-        <h1 className="text-center text-3xl font-bold mb-6">Registrar Activo</h1>
-
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label htmlFor="name" className="block text-sm font-semibold">Nombre del Activo</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={asset.name}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded"
-              required
-            />
-          </div>
-
-          <div className="mb-4">
-            <label htmlFor="location" className="block text-sm font-semibold">Ubicación del Activo</label>
-            <input
-              type="text"
-              id="location"
-              name="location"
-              value={asset.location}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded"
-              required
-            />
-          </div>
-
-          <div className="mb-4">
-            <label htmlFor="value" className="block text-sm font-semibold">Valor del Activo</label>
-            <input
-              type="number"
-              id="value"
-              name="value"
-              value={asset.value}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded"
-              required
-            />
-          </div>
-
-          <button
-            type="submit"
-            className="w-full bg-blue-500 text-white p-2 rounded"
-          >
-            Registrar Activo
+    <section className="p-6">
+      <h2 className="text-center text-xl font-bold text-blue-500 mb-4">Activos</h2>
+      
+      <div className="flex justify-between items-center mb-4">
+        <button className="bg-gray-200 text-blue-500 py-2 px-4 rounded">
+          Añadir Activo +
+        </button>
+        
+        <div className="flex items-center gap-2">
+          <input
+            type="text"
+            placeholder="ID"
+            className="border border-gray-300 rounded p-2 text-gray-900"
+          />
+          <input
+            type="text"
+            placeholder="NOMBRE"
+            className="border border-gray-300 rounded p-2 text-gray-900"
+          />
+          <input
+            type="text"
+            placeholder="TIPO"
+            className="border border-gray-300 rounded p-2 text-gray-900"
+          />
+          <button className="bg-blue-500 text-white py-2 px-4 rounded">
+            BUSCAR
           </button>
-        </form>
+          <a href="#" className="text-blue-500 underline">
+            Ver historial...
+          </a>
+        </div>
+      </div>
+
+      <div className="bg-gray-100 p-4 rounded-lg shadow-md">
+        <div className="grid grid-cols-4 font-semibold text-gray-700 mb-2">
+          <div>ID</div>
+          <div>NOMBRE</div>
+          <div>TIPO</div>
+          <div className="text-right">Acciones</div>
+        </div>
+
+        {assets.map((asset) => (
+          <div key={asset.id} className="grid grid-cols-4 items-center bg-gray-200 p-2 rounded-lg mb-2">
+            <div className="text-gray-800 font-semibold">{asset.id}</div>
+            <div className="text-gray-800 font-semibold">{asset.name}</div>
+            <div className="text-gray-800 font-semibold">{asset.type}</div>
+            <div className="text-right space-x-4">
+              <button className="text-blue-500">Editar</button>
+              <button className="text-blue-500">Eliminar</button>
+              <button className="text-blue-500">Ver más...</button>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );
 };
 
-export default ListAssets;
+export default AssetList;
