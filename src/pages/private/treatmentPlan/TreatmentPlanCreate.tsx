@@ -1,9 +1,6 @@
-import React, { useState } from 'react';
-import { TreatmentPlanType } from '../../../../shared/interfaces/treatmentPlan.interface';
-
+import { useState } from 'react';
 // Utils
-import { notifyError, notifySuccess } from '../../../utils/toast';
-import { fetchMethod } from '../../../utils/fetchMethod';
+import { notifyError } from '../../../shared/components/RM_Toast';
 
 // Components
 import { Toaster } from 'react-hot-toast';
@@ -14,7 +11,7 @@ import RM_Link from '../../../shared/components/RM_Link';
 import { PATHS } from '../../../shared/constants/routes.constant';
 
 const TreatmentPlanCreate = () => {
-	const [treatmentPlan, setTreatmentPlan] = useState<TreatmentPlanType>({
+	const [treatmentPlan, setTreatmentPlan] = useState({
 		planName: '',
 		description: '',
 		startDate: '',
@@ -28,7 +25,12 @@ const TreatmentPlanCreate = () => {
 		e.preventDefault();
 
 		// Validación de campos obligatorios
-		if (!treatmentPlan.planName || !treatmentPlan.description || !treatmentPlan.startDate || !treatmentPlan.responsible) {
+		if (
+			!treatmentPlan.planName ||
+			!treatmentPlan.description ||
+			!treatmentPlan.startDate ||
+			!treatmentPlan.responsible
+		) {
 			notifyError('Por favor llena todos los campos obligatorios');
 			return;
 		}
@@ -60,7 +62,7 @@ const TreatmentPlanCreate = () => {
 			className="flex justify-center items-center max-w-2xl flex-col gap-4 mx-auto min-h-full px-3 mt-10"
 			onSubmit={handleSubmit}
 		>
-      <RM_Link
+			<RM_Link
 				to={PATHS.private.treatmentPlan.base}
 				hasBackground={false}
 				color="primary"
@@ -86,7 +88,9 @@ const TreatmentPlanCreate = () => {
 			>
 				<></>
 			</RM_Link>
-			<h1 className="text-text-primary text-center text-3xl">Crear Plan de Tratamiento</h1>
+			<h1 className="text-text-primary text-center text-3xl">
+				Crear Plan de Tratamiento
+			</h1>
 
 			{/* Nombre del Plan */}
 			<RM_Input
@@ -140,9 +144,7 @@ const TreatmentPlanCreate = () => {
 			/>
 
 			{/* Botón de Enviar */}
-			<RM_Button type="submit">
-				Crear Plan
-			</RM_Button>
+			<RM_Button type="submit">Crear Plan</RM_Button>
 
 			<Toaster />
 		</form>
