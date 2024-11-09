@@ -23,7 +23,7 @@ const ListAssets = () => {
   return (
     <section className="flex items-center justify-center p-3 h-screen">
       <div className="w-full max-w-md">
-        {/* Titulo visible con estilo */}
+        
         <h1 className="text-center text-3xl font-bold mb-6">Registrar Activo</h1>
 
         <form onSubmit={handleSubmit}>
