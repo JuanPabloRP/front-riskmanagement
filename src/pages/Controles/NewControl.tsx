@@ -192,7 +192,7 @@ const NewControl = () => {
 					</div>
 					<Select id="rol" name="rol" required defaultValue="">
 						<option key={-1} value="" disabled hidden>
-					    	Selecciona un riesgo
+					    	Selecciona un riesgo X
 						</option>
 						<option value="opcion1">Opción 1</option>
     					<option value="opcion2">Opción 2</option>

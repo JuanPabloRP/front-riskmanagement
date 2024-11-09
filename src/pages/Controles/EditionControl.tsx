@@ -76,7 +76,7 @@ const ListaControles: React.FC = () => {
                 estado: "Activo",
                 responsable: "Responsable X"
             })}>
-                Agregar Control
+                Agregar Control X
             </RM_Button>
         </div>
     );
