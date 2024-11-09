@@ -35,6 +35,7 @@ export const PATHS = {
 			base: `${BASE_URL}/assets`,
 			create: `${BASE_URL}/assets/create`,
 			edit: `${BASE_URL}/assets/edit`,
+		
 		},
 		vulnerabilities: {
 			base: `${BASE_URL}/vulnerabilities`,
