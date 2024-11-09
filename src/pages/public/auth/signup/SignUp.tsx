@@ -10,7 +10,10 @@ import { PATHS } from '../../../../shared/constants/routes.constant';
 import { MethodType, ResponseType } from '../../../../shared/enums/httpEnums';
 
 // Utils
-import { notifyError, notifySuccess } from '../../../../utils/toast';
+import {
+	notifyError,
+	notifySuccess,
+} from '../../../../shared/components/RM_Toast';
 import { fetchMethod } from '../../../../utils/fetchMethod';
 
 // Components
@@ -21,6 +24,7 @@ import RM_Input from '../../../../shared/components/RM_Input';
 import RM_Select from '../../../../shared/components/RM_Select';
 import RM_Button from '../../../../shared/components/RM_Button';
 import RM_Link from '../../../../shared/components/RM_Link';
+import RM_Modal from '../../../../shared/components/RM_Modal';
 
 const SignUp = () => {
 	const [userInformation, setUserInformation] = useState<UserType>({
@@ -66,6 +70,14 @@ const SignUp = () => {
 			return;
 		}
 
+		if (
+			Number.parseInt(userInformation?.identification) < 1000000 ||
+			Number.parseInt(userInformation?.identification) > 9999999999
+		) {
+			notifyError('Cédula inválida');
+			return;
+		}
+
 		fetchMethod(
 			`${API_URL}/v1/user`,
 			MethodType.POST,
@@ -90,6 +102,11 @@ const SignUp = () => {
 			role: value.toString(),
 		}));
 	};
+
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
+	const openModal = () => setIsModalOpen(true);
+	const closeModal = () => setIsModalOpen(false);
 
 	return (
 		<form
@@ -197,8 +214,8 @@ const SignUp = () => {
 					required
 					error={
 						(userInformation.identification.length > 0 &&
-							userInformation.identification.length < 1000000) ||
-						userInformation.identification.length > 9999999999
+							userInformation.identification.length < 7) ||
+						userInformation.identification.length > 10
 							? 'Cédula inválida'
 							: ''
 					}
@@ -230,6 +247,51 @@ const SignUp = () => {
 				</Link>
 			</p>
 			<Toaster />
+			<div className="">
+				<RM_Button
+					onClick={openModal}
+					variant="danger"
+					icon={
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							strokeWidth="2"
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							className="icon icon-tabler icons-tabler-outline icon-tabler-circle-minus"
+						>
+							<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+							<path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+							<path d="M9 12l6 0" />
+						</svg>
+					}
+				></RM_Button>
+				<RM_Modal
+					isOpen={isModalOpen}
+					onClose={closeModal}
+					title="Deseas eliminar esto"
+				>
+					<p className="mb-4">
+						¿Estás seguro de que deseas eliminar este elemento?
+					</p>
+					<footer className="flex gap-2">
+						<RM_Button
+							onClick={closeModal}
+							variant="neutral"
+							hasBackground={false}
+						>
+							Cancelar
+						</RM_Button>
+						<RM_Button onClick={closeModal} variant="danger">
+							Elimianr
+						</RM_Button>
+					</footer>
+				</RM_Modal>
+			</div>
 		</form>
 	);
 };

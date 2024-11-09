@@ -1,11 +1,7 @@
-import { Link } from 'react-router-dom';
-import { LINKS, PATHS } from '../../../shared/constants/routes.constant';
 import { Button } from 'flowbite-react';
 import managementSvg from '../../../assets/svg/management_svg.svg';
 
 const Home = () => {
-	const links = LINKS;
-
 	return (
 		<>
 			<section className="flex flex-col justify-center items-center p-2 ">

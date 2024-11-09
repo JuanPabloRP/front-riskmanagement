@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { LINKS, PATHS } from '../shared/constants/routes.constant';
+import { PATHS } from '../shared/constants/routes.constant';
 import RM_Link from '../shared/components/RM_Link';
 import RM_Dropdown from '../shared/components/RM_Dropdown';
 
@@ -8,8 +8,7 @@ interface SidebarProps {
 }
 
 export default function PrivateSidebar({ children }: SidebarProps) {
-	const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-	const links = LINKS;
+	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
 	const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
@@ -17,7 +16,7 @@ export default function PrivateSidebar({ children }: SidebarProps) {
 		<div className="flex h-screen overflow-hidden">
 			{/* Botón para abrir/cerrar el sidebar en dispositivos móviles */}
 			<button
-				className="fixed top-4 left-4 z-50 p-2 bg-primary text-primary-foreground rounded-md lg:hidden"
+				className="fixed top-4 left-4 z-50 p-2 bg-primary text-primary-foreground rounded-md"
 				onClick={toggleSidebar}
 				aria-label={isSidebarOpen ? 'Cerrar menú' : 'Abrir menú'}
 			>
@@ -62,19 +61,15 @@ export default function PrivateSidebar({ children }: SidebarProps) {
 			{/* Overlay para cerrar el sidebar al hacer clic fuera en dispositivos móviles */}
 			{isSidebarOpen && (
 				<div
-					className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+					className="fixed inset-0 bg-black bg-opacity-50 z-40"
 					onClick={toggleSidebar}
 				></div>
 			)}
 
 			{/* Sidebar */}
 			<aside
-				className={`bg-bg border-r border-border-secondary fixed inset-y-0 left-0 z-50 w-64 bg-background shadow-lg transform transition-all duration-300 ease-in-out 
-          ${
-						isSidebarOpen
-							? 'translate-x-0'
-							: '-translate-x-full lg:translate-x-0 lg:w-16'
-					}`}
+				className={`bg-bg border-r border-border-secondary fixed inset-y-0 left-0 z-50 w-64shadow-lg transform transition-all duration-300 ease-in-out 
+          ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}
 			>
 				<nav className="h-full overflow-y-auto p-4">
 					<div className="flex justify-between items-center mb-4">
@@ -87,7 +82,7 @@ export default function PrivateSidebar({ children }: SidebarProps) {
 						</h2>
 						{/* Botón para cerrar el sidebar en desktop */}
 						<button
-							className="hidden lg:block p-2 hover:bg-accent rounded-md"
+							className="block p-2 hover:bg-accent rounded-md"
 							onClick={toggleSidebar}
 							aria-label={isSidebarOpen ? 'Cerrar menú' : 'Abrir menú'}
 						>
@@ -210,7 +205,7 @@ export default function PrivateSidebar({ children }: SidebarProps) {
 							</RM_Link>
 							<RM_Link to={PATHS.private.assets.create}>
 								{' '}
-								<span>Ver activos</span>{' '}
+								<span>Crear activo</span>{' '}
 							</RM_Link>
 						</RM_Dropdown>
 
@@ -351,7 +346,7 @@ export default function PrivateSidebar({ children }: SidebarProps) {
 
 			{/* Contenido principal */}
 			<main
-				className={`flex-1 overflow-y-auto p-4 transition-all duration-300 ease-in-out ${
+				className={`flex-1  p-4 transition-all duration-300 ease-in-out ${
 					isSidebarOpen ? 'lg:ml-64' : 'lg:ml-16'
 				}`}
 			>

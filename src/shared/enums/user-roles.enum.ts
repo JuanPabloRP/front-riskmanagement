@@ -5,6 +5,7 @@ export enum UserRolesEnum {
 	'RISK_OWNER' = 'Propietario del riesgo',
 	'ASSET_MANAGER' = 'Gestor de activos',
 	'SECURITY_ANALYST' = 'Analista de seguridad',
+	'AUDITOR' = 'Auditor',
 }
 
 /*
