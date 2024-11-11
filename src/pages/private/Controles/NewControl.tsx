@@ -1,28 +1,28 @@
 import { useState } from 'react';
-import { UserType } from '../../shared/interfaces/user.interface';
-import { ControlType } from '../../shared/interfaces/controls';
+import { UserType } from '../../../shared/interfaces/user.interface';
+import { ControlType } from '../../../shared/interfaces/controls';
 // Flowbite
 import { Button, Label, Select, TextInput } from 'flowbite-react';
 
 // Constants
-import { ROLES } from '../../shared/constants/user-roles.constant';
-import { PATHS } from '../../shared/constants/routes.constant';
+import { ROLES } from '../../../shared/constants/user-roles.constant';
+import { PATHS } from '../../../shared/constants/routes.constant';
 
 
 // Enums
-import { MethodType, ResponseType } from '../../shared/enums/httpEnums';
+import { MethodType, ResponseType } from '../../../shared/enums/httpEnums';
 
 // Utils
-import { notifyError, notifySuccess } from '../../utils/toast';
-import { fetchMethod } from '../../utils/fetchMethod';
+import { notifyError, notifySuccess } from '../../../utils/toast';
+import { fetchMethod } from '../../../utils/fetchMethod';
 
 // Components
-import BackButton from '../../shared/components/BackButton';
+import BackButton from '../../../shared/components/BackButton';
 import { Toaster } from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
-import { UserRolesEnum } from '../../shared/enums/user-roles.enum';
-import RM_Input from '../../shared/components/RM_Input';
-import RM_Button from '../../shared/components/RM_Button';
+import { UserRolesEnum } from '../../../shared/enums/user-roles.enum';
+import RM_Input from '../../../shared/components/RM_Input';
+import RM_Button from '../../../shared/components/RM_Button';
 import ListaControles from './EditionControl';
 
 const NewControl = () => {

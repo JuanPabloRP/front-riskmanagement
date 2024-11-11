@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ControlType } from '../../shared/interfaces/controls';
+import { ControlType } from '../../../shared/interfaces/controls';
 import { Button, TextInput, Label, Select } from 'flowbite-react';
-import RM_Button from '../../shared/components/RM_Button';
-import { PATHS } from '../../shared/constants/routes.constant';
+import RM_Button from '../../../shared/components/RM_Button';
+import { PATHS } from '../../../shared/constants/routes.constant';
 
 const EditControl = () => {
     const location = useLocation();

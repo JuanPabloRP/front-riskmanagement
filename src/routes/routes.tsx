@@ -7,13 +7,13 @@ import { PATHS } from '../shared/constants/routes.constant';
 import Index from '../pages/public/home/Index';
 import SignIn from '../pages/public/auth/signin/SignIn';
 import SignUp from '../pages/public/auth/signup/SignUp';
-import NewControl from '../pages/Controles/NewControl';
+import NewControl from '../pages/private/Controles/NewControl';
 import PrivateLayout from '../layouts/PrivateLayout';
 import PublicLayout from '../layouts/PublicLayout';
 import Home from '../pages/private/home/Home';
 import Playground from '../pages/playground/Playground';
-import ListaControles from '../pages/Controles/GestionControls';
-import EditControl from '../pages/Controles/EditionControl';
+import ListaControles from '../pages/private/Controles/GestionControls';
+import EditControl from '../pages/private/Controles/EditionControl';
 
 const AppRoutes = () => {
 	return (

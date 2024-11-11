@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { ControlType } from '../../shared/interfaces/controls';
-import RM_Input from '../../shared/components/RM_Input';
-import RM_Button from '../../shared/components/RM_Button';
+import { ControlType } from '../../../shared/interfaces/controls';
+import RM_Input from '../../../shared/components/RM_Input';
+import RM_Button from '../../../shared/components/RM_Button';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import { PATHS } from '../../shared/constants/routes.constant';
+import { PATHS } from '../../../shared/constants/routes.constant';
 
 
 
