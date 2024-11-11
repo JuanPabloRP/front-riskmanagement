@@ -1,5 +1,5 @@
 export interface ControlType {
-	id?: number | undefined;
+	id: number;
 	Nombre: string;
 	tipo: string;
 	descripcion?: string;

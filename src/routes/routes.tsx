@@ -12,7 +12,8 @@ import PrivateLayout from '../layouts/PrivateLayout';
 import PublicLayout from '../layouts/PublicLayout';
 import Home from '../pages/private/home/Home';
 import Playground from '../pages/playground/Playground';
-import ListaControles from '../pages/Controles/EditionControl';
+import ListaControles from '../pages/Controles/GestionControls';
+import EditControl from '../pages/Controles/EditionControl';
 
 const AppRoutes = () => {
 	return (
@@ -24,6 +25,7 @@ const AppRoutes = () => {
 				<Route path="" element={<Home />} />
 				<Route path={PATHS.private.controls.create} element={<NewControl />} />
 				<Route path={PATHS.private.controls.base} element={<ListaControles />} />
+				<Route path={PATHS.private.controls.edit} element={<EditControl />} />
 			</Route>
 
 			{/* Rutas para registrarse o iniciar sesión */}

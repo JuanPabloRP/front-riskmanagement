@@ -1,4 +1,3 @@
-// React
 import { useState } from 'react';
 import { UserType } from '../../shared/interfaces/user.interface';
 import { ControlType } from '../../shared/interfaces/controls';
@@ -20,62 +19,96 @@ import { fetchMethod } from '../../utils/fetchMethod';
 // Components
 import BackButton from '../../shared/components/BackButton';
 import { Toaster } from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { UserRolesEnum } from '../../shared/enums/user-roles.enum';
 import RM_Input from '../../shared/components/RM_Input';
+import RM_Button from '../../shared/components/RM_Button';
+import ListaControles from './EditionControl';
 
 const NewControl = () => {
-	const [InformacionControl, setInformacionControl] = useState<ControlType>({
-    	id: undefined,
-		Nombre: " ",
-		tipo: " ",
-		descripcion: " ",
-		identificacion: " ",
-		riesgoAsociado: " ",
-		FechaImplementacion: '',
-		estado: " ",
-		responsable: " "
-	});
-	const API_URL = import.meta.env.VITE_API_URL;
 
-	const roles = ROLES.filter((rol) => rol.value !== UserRolesEnum.SUPERADMIN);
+	const navigate = useNavigate();
+
+	const [nuevoControl, setNuevoControl] = useState<ControlType>({
+    	id: 0,
+		Nombre: "",
+		tipo: "",
+		descripcion: "",
+		identificacion: "",
+		riesgoAsociado: "",
+		FechaImplementacion: '',
+		estado: "",
+		responsable: ""
+	});
 
 	const Validacion = (e: React.FormEvent<HTMLFormElement>) => {
     	e.preventDefault();
 
-    	if (InformacionControl?.riesgoAsociado === '') {
-        	notifyError('Selecciona un riesgo asociado');
-        	return;
-    	}
+    	if (
+			!nuevoControl?.Nombre ||
+			!nuevoControl?.tipo ||
+			!nuevoControl?.descripcion ||
+			!nuevoControl?.identificacion ||
+			!nuevoControl?.riesgoAsociado ||
+			!nuevoControl?.FechaImplementacion ||
+			!nuevoControl?.estado ||
+			!nuevoControl?.responsable
+		) {
+			notifyError('Por favor llena todos los campos');
+			return;
+		}
 
-    	console.log(InformacionControl);
+		if (nuevoControl?.estado === '') {
+			notifyError('Selecciona un estado');
+			return;
+		}
+
+		if (nuevoControl?.riesgoAsociado === '') {
+			notifyError('Selecciona un riesgo');
+			return;
+		}
+
+		if (nuevoControl?.responsable === '') {
+			notifyError('Selecciona un responsable');
+			return;
+		}
+
+    	console.log(nuevoControl);
     	notifySuccess('control registrado correctamente');
-    	fetchMethod(
-        	`${API_URL}/v1/user`,
-        	MethodType.POST,
-        	InformacionControl,
-        	ResponseType.JSON,
-        	undefined,
-        	true
-    	);	
 	};
 
-	const handleChange = (e: React.FormEvent<HTMLFormElement>) => {
+	{/*const handleChange = (e: React.FormEvent<HTMLFormElement>) => {
     	const target = e.target as HTMLInputElement;
     	const [nombre, value] = [target?.name, target?.value];
 
-    	setInformacionControl({
-        	...InformacionControl,
+    	setNuevoControl({
+        	...nuevoControl,
         	[nombre]: value,
     	} as ControlType);
+	};*/}
+
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setNuevoControl({
+            ...nuevoControl,
+            [e.target.name]: e.target.value
+        });
+    };
+
+	const getNextId = () => {
+		const lastId = parseInt(localStorage.getItem("controlId") || "0", 10);
+		const newId = lastId + 1;
+		localStorage.setItem("controlId", newId.toString());
+		return newId;
 	};
 
-	const handleChange2 = (field: keyof UserType, value: string) => {
-    	setInformacionControl((prevControl) => ({
-        	...prevControl,
-        	[field]: value,
-    	}));
-	};
+	const SubirForm = () => {
+		setNuevoControl(prevControl => ({ ...prevControl, id: getNextId() }));
+        navigate(`${PATHS.private.controls.base}`, { state: nuevoControl });
+    };
+
+    const irGC = () => {
+        navigate(`${PATHS.private.controls.base}`);
+    };
 
 
     return(
@@ -84,7 +117,25 @@ const NewControl = () => {
 		    onSubmit={Validacion}
 		    //onChange={handleChange}
 		>
-		    <BackButton path={PATHS.private.home} />
+		    <RM_Button onClick={irGC}><svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					strokeWidth="2"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+					className="icon icon-tabler icons-tabler-outline icon-tabler-arrow-left"
+				>
+					<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+					<path d="M5 12l14 0" />
+					<path d="M5 12l6 6" />
+					<path d="M5 12l6 -6" />
+				</svg> 
+				Regresar
+			</RM_Button> 
 		    <h1 className="text-text-primary text-center text-3xl">Registrar Nuevo Control</h1>
 		    <div className="flex flex-col md:flex-row justify-center items-center gap-2 text-text-primary w-full">
 			    <div className="w-full">
@@ -95,12 +146,14 @@ const NewControl = () => {
 					    	className="text-text-primary"
 				    	/>
 				    </div>
-				    <TextInput
-					    id="name"
-					    name="name"
+				    <TextInput //organizar esto***********************
+					    id="nombre"
+					    name="Nombre"
 					    type="text"
+						value={nuevoControl.Nombre}
+						onChange={handleChange}
 						placeholder="Nombre del control"
-					    required
+						required
 				    />
 			    </div>
 			    <div className="w-full">
@@ -112,9 +165,11 @@ const NewControl = () => {
 						/>
 				    </div>
 				    <TextInput
-						id="lastName"
-						name="lastName"
+						id="tipo"
+						name="tipo"
 						type="text"
+						value={nuevoControl.tipo}
+						onChange={handleChange}
 						placeholder="tipo de control"
 						required
 				    />
@@ -130,11 +185,13 @@ const NewControl = () => {
 					    	className="text-text-primary"
 						/>
 				    </div>
-				    <TextInput id="password" 
-						name="password" 
-						type="password" 
-						placeholder='Descripción del control' 
-						required 
+				    <TextInput id="descripcion" 
+						name="descripcion" 
+						type="text" 
+						value={nuevoControl.descripcion}
+						onChange={handleChange}
+						placeholder="Descripción del control" 
+						required
 					/>
 			    </div>
 			    <div className=" w-full">
@@ -146,9 +203,13 @@ const NewControl = () => {
 					    />
 					</div>
 				    <TextInput
-					    id="passwordConfirmation"
-						name="passwordConfirmation"
-						type="password"
+					    id="identificacion"
+						name="identificacion"
+						type="number"
+						min={1000000}
+						max={9999999999}
+						value={nuevoControl.identificacion}
+						onChange={handleChange}
 						placeholder='Identificación del control'
 						required
 					/>
@@ -163,7 +224,13 @@ const NewControl = () => {
 							className="text-text-primary"
 						/>
 					</div>
-				    <TextInput id="birthDate" name="birthDate" type="date" required />
+				    <TextInput 
+						id="fechaimplementacion" 
+						name="FechaImplementacion" 
+						type="date" 
+						required
+						value={nuevoControl.FechaImplementacion}
+						onChange={handleChange} />
 			    </div>
 			    <div className=" w-full">
 					<div className="mb-2 block">
@@ -173,12 +240,13 @@ const NewControl = () => {
 							className="text-text-primary"
 				    	/>
 					</div>
-				<	TextInput
-				    	id="identification"
-				    	name="identification"
-				    	placeholder="Activo o Inactivo"
-				    	required
-					/>
+					<Select id="estado" name="estado" required defaultValue="" onChange={(e) => setNuevoControl({ ...nuevoControl, estado: e.target.value })} value={nuevoControl.estado}>
+						<option key={-1} value="" disabled hidden>
+					    	Selecciona un estado
+						</option>
+						<option value="opcion1">Activo</option>
+    					<option value="opcion2">Inactivo</option>
+				    </Select>
 				</div>
 			</div>
 			<div className="flex flex-col md:flex-row  justify-center items-center gap-2  text-text-primary  w-full">
@@ -190,9 +258,9 @@ const NewControl = () => {
 							className="text-text-primary"
 						/>
 					</div>
-					<Select id="rol" name="rol" required defaultValue="">
+					<Select id="riesgoAsociado" name="riesgoAsociado" required defaultValue="" onChange={(e) => setNuevoControl({ ...nuevoControl, riesgoAsociado: e.target.value })} value={nuevoControl.riesgoAsociado}>
 						<option key={-1} value="" disabled hidden>
-					    	Selecciona un riesgo X
+					    	Selecciona un riesgo
 						</option>
 						<option value="opcion1">Opción 1</option>
     					<option value="opcion2">Opción 2</option>
@@ -209,7 +277,7 @@ const NewControl = () => {
 							className="text-text-primary"
 						/>
 					</div>
-					<Select id="rol" name="rol" required defaultValue="">
+					<Select id="responsable" name="responsable" required defaultValue="" onChange={(e) => setNuevoControl({ ...nuevoControl, responsable: e.target.value })} value={nuevoControl.responsable}>
 						<option key={-1} value="" disabled hidden>
 					    	Selecciona un responsable
 						</option>
@@ -219,13 +287,10 @@ const NewControl = () => {
 				    </Select>
 			    </div>
 		    </div>
-
-			<Button
-				type="submit"
-				className="bg-btn-primary hover:bg-btn-primary-hover focus:bg-btn-primary-hover active:bg-btn-primary-active"
-		    >
-				Guardar control
-			</Button>
+			<br />
+			<RM_Button onClick={SubirForm}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"> <path d="M12 5l0 14"></path> <path d="M5 12l14 0"></path> </svg> 
+                Agregar Control
+            </RM_Button>
 			<br />
 			<br />
 
@@ -312,4 +377,4 @@ const NewControl = () => {
 }
 
 
-export default NewControl;
+export default NewControl
