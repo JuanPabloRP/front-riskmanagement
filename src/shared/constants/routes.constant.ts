@@ -20,6 +20,7 @@ export const PATHS = {
 			base: `${BASE_URL}/users`,
 			create: `${BASE_URL}/users/create`,
 			edit: `${BASE_URL}/users/edit`,
+			profile: `${BASE_URL}/users/profile`,
 		},
 		roles: {
 			base: `${BASE_URL}/roles`,
@@ -35,6 +36,7 @@ export const PATHS = {
 			base: `${BASE_URL}/assets`,
 			create: `${BASE_URL}/assets/create`,
 			edit: `${BASE_URL}/assets/edit`,
+		
 		},
 		vulnerabilities: {
 			base: `${BASE_URL}/vulnerabilities`,
