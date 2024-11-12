@@ -7,7 +7,7 @@ import { PATHS } from '../shared/constants/routes.constant';
 import Index from '../pages/public/home/Index';
 import SignIn from '../pages/public/auth/signin/SignIn';
 import SignUp from '../pages/public/auth/signup/SignUp';
-import NewControl from '../pages/private/Controles/NewControl';
+import NewControl from '../pages/private/control/NewControl';
 import PrivateLayout from '../layouts/PrivateLayout';
 import PublicLayout from '../layouts/PublicLayout';
 import Home from '../pages/private/home/Home';
@@ -19,8 +19,8 @@ import ListRoles from '../pages/private/role/ListRoles';
 import ListAssets from '../pages/private/asset/ListAssets';
 import TreatmentPlan from '../pages/private/treatmentPlan/TreatmentPlan';
 import TreatmentPlanCreate from '../pages/private/treatmentPlan/TreatmentPlanCreate';
-import ListaControles from '../pages/private/Controles/GestionControls';
-import EditControl from '../pages/private/Controles/EditionControl';
+import ListaControles from '../pages/private/control/GestionControls';
+import EditControl from '../pages/private/control/EditionControl';
 
 const AppRoutes = () => {
 	return (
@@ -50,7 +50,7 @@ const AppRoutes = () => {
 				/>
 				<Route path={PATHS.private.controls.create} element={<NewControl />} />
 				<Route path={PATHS.private.controls.base} element={<ListaControles />} />
-				<Route path={PATHS.private.controls.edit} element={<EditControl />} />
+				<Route path={`${PATHS.private.controls.edit}/:id`} element={<EditControl />} />
 			</Route>
 
 			{/* Rutas para registrarse o iniciar sesión */}

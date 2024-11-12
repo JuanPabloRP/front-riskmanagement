@@ -13,7 +13,7 @@ import { PATHS } from '../../../shared/constants/routes.constant';
 import { MethodType, ResponseType } from '../../../shared/enums/httpEnums';
 
 // Utils
-import { notifyError, notifySuccess } from '../../../utils/toast';
+import { notifyError, notifySuccess } from '../../../shared/components/RM_Toast';
 import { fetchMethod } from '../../../utils/fetchMethod';
 
 // Components
@@ -102,9 +102,10 @@ const NewControl = () => {
 	};
 
 	const SubirForm = () => {
-		setNuevoControl(prevControl => ({ ...prevControl, id: getNextId() }));
-        navigate(`${PATHS.private.controls.base}`, { state: nuevoControl });
-    };
+		const updatedControl = { ...nuevoControl, id: getNextId() }; // Asegura el nuevo id
+		setNuevoControl(updatedControl);
+		navigate(`${PATHS.private.controls.base}`, { state: { nuevoControl: updatedControl } });
+	};	
 
     const irGC = () => {
         navigate(`${PATHS.private.controls.base}`);
