@@ -42,7 +42,7 @@ const MonitoreoControl: React.FC = () => {
     };
 
     return (
-        <div >
+        <div className='flex justify-between items-center border-b border-gray-300 py-2 px-4'>
             <div>
                 <RM_Button onClick={() => irGC}>
                     Volver

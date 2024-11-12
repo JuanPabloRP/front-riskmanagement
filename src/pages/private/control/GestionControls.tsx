@@ -5,6 +5,8 @@ import RM_Button from '../../../shared/components/RM_Button';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { PATHS } from '../../../shared/constants/routes.constant';
 import RM_Link from '../../../shared/components/RM_Link';
+import RM_Modal from '../../../shared/components/RM_Modal';
+import { Toaster } from 'react-hot-toast';
 
 const ListaControles: React.FC = () => {
     const navigate = useNavigate();
@@ -48,11 +50,18 @@ const ListaControles: React.FC = () => {
 
     const eliminarControl = (id?: number) => {
         setControles(controles.filter(control => control.id !== id));
+        setIsModalOpen(false)
     };
 
     const verDetalles = (id: number) => {
         navigate(`${PATHS.private.controls.monitor}/${id}`);
     };
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const openModal = () => setIsModalOpen(true);
+    const closeModal = () => setIsModalOpen(false);
+
 
 
     return (
@@ -78,15 +87,43 @@ const ListaControles: React.FC = () => {
                                             <path d="M12.5 5.5l4 4"></path>
                                         </svg>
                                     </RM_Link>
-                                    <RM_Button onClick={() => eliminarControl(control.id)} variant="danger">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="24" height="24">
-                                            <path d="M4 7h16"></path>
-                                            <path d="M10 11v6"></path>
-                                            <path d="M14 11v6"></path>
-                                            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
-                                            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
-                                        </svg>
-                                    </RM_Button>
+                                    <Toaster />
+                                    <div className="">
+                                        <RM_Button
+                                            onClick={openModal}
+                                            variant="danger"
+                                            icon={
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="24" height="24">
+                                                    <path d="M4 7h16"></path>
+                                                    <path d="M10 11v6"></path>
+                                                    <path d="M14 11v6"></path>
+                                                    <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+                                                    <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+                                                </svg>
+                                            }
+                                        ></RM_Button>
+                                        <RM_Modal
+                                            isOpen={isModalOpen}
+                                            onClose={closeModal}
+                                            title="Deseas eliminar esto"
+                                        >
+                                            <p className="mb-4 text-white font-bold">
+                                                ¿Estás seguro de que deseas eliminar este control?
+                                            </p>
+                                            <footer className="flex gap-2">
+                                                <RM_Button
+                                                    onClick={closeModal}
+                                                    variant="neutral"
+                                                    hasBackground={false}
+                                                >
+                                                    Cancelar
+                                                </RM_Button>
+                                                <RM_Button onClick={() => eliminarControl(control.id)} variant="danger">
+                                                    Eliminar
+                                                </RM_Button>
+                                            </footer>
+                                        </RM_Modal>
+                                    </div>
                                 </div>
                             </header>
                             <section>
