@@ -57,7 +57,7 @@ const content2 = [
                         {content.map(({titulo,description})=>
                          <div className="w-full  mb-4 mt-6 flex flex-col">
                          <span className="font-bold uppercase">{titulo}</span>
-                         <input type="text" disabled={isDisabled} id="text" className="border-2 border-border-secondary bg-black rounded p-2 mb-2" value={description}/>
+                         <input type="text" disabled={isDisabled} id="text" className="border-2  border-border-secondary bg-black rounded p-2 mb-2" value={description}/>
                          </div>  
                         
                         )} 
@@ -71,9 +71,10 @@ const content2 = [
                         
                         )} 
                     </div>
-                    <div className="flex justify-center items-center w-full rounded-lg bg-blue-500 mt-4 text-white text-lg font-semibold">
-                        <button type="button" onClick={() => setIsDisabled(!isDisabled)} className="p-4 self-center">editar perfil</button>
+                    <div className={`flex justify-center items-center w-full rounded-lg text-white text-lg font-semibold `} >
+                        <button  type="button" onClick={() => setIsDisabled(!isDisabled)} className={` ${isDisabled ?"bg-blue-500" : "bg-btn-success" } w-1/4 p-2 self-center   mt-4 rounded-lg`}> { isDisabled ? "Editar" : "Guardar"}</button>
                     </div>
+                    
                 </form>
             </div>
         </div>
