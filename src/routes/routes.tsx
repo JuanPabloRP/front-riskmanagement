@@ -21,6 +21,7 @@ import TreatmentPlan from '../pages/private/treatmentPlan/TreatmentPlan';
 import TreatmentPlanCreate from '../pages/private/treatmentPlan/TreatmentPlanCreate';
 import ListaControles from '../pages/private/control/GestionControls';
 import EditControl from '../pages/private/control/EditionControl';
+import MonitoreoControl from '../pages/private/control/ControlMonitor';
 
 const AppRoutes = () => {
 	return (
@@ -51,6 +52,7 @@ const AppRoutes = () => {
 				<Route path={PATHS.private.controls.create} element={<NewControl />} />
 				<Route path={PATHS.private.controls.base} element={<ListaControles />} />
 				<Route path={`${PATHS.private.controls.edit}/:id`} element={<EditControl />} />
+				<Route path={`${PATHS.private.controls.monitor}/:id`} element={<MonitoreoControl />} />
 			</Route>
 
 			{/* Rutas para registrarse o iniciar sesión */}

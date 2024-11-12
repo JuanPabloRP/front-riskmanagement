@@ -47,6 +47,7 @@ export const PATHS = {
 			base: `${BASE_URL}/controls`,
 			create: `${BASE_URL}/controls/create`,
 			edit: `${BASE_URL}/controls/edit`,
+			monitor: `${BASE_URL}/controls/monitor`
 		},
 		treatmentPlan: {
 			base: `${BASE_URL}/treatment-plan`,
