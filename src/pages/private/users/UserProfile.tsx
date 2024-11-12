@@ -72,7 +72,7 @@ const content2 = [
                         )} 
                     </div>
                     <div className="flex justify-center items-center w-full rounded-lg bg-blue-500 mt-4 text-white text-lg font-semibold">
-                        <button onClick={() => setIsDisabled(!isDisabled)} className="p-4 self-center">editar perfil</button>
+                        <button type="button" onClick={() => setIsDisabled(!isDisabled)} className="p-4 self-center">editar perfil</button>
                     </div>
                 </form>
             </div>
