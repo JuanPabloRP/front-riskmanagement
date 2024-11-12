@@ -49,6 +49,7 @@ const AppRoutes = () => {
 					path={PATHS.private.treatmentPlan.create}
 					element={<TreatmentPlanCreate />}
 				/>
+				
 				<Route path={PATHS.private.controls.create} element={<NewControl />} />
 				<Route path={PATHS.private.controls.base} element={<ListaControles />} />
 				<Route path={`${PATHS.private.controls.edit}/:id`} element={<EditControl />} />

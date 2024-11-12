@@ -4,6 +4,7 @@ import { ControlType } from '../../../shared/interfaces/controls';
 import RM_Button from '../../../shared/components/RM_Button';
 import { PATHS } from '../../../shared/constants/routes.constant';
 import { useLocation, useNavigate } from 'react-router-dom';
+import BackButton from '../../../shared/components/BackButton';
 
 const MonitoreoControl: React.FC = () => {
     const { id } = useParams<{ id: string }>();  // Obtener el id del control de la URL
@@ -64,6 +65,10 @@ const MonitoreoControl: React.FC = () => {
                 </div>
             </div>
         </div>
+        /*<>
+			<BackButton path={PATHS.private.controls.base} />
+			<h1>HOlla</h1>
+		</>*/
 
     );
 };
