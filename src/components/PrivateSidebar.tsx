@@ -13,7 +13,7 @@ export default function PrivateSidebar({ children }: SidebarProps) {
 	const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
 	return (
-		<div className="flex h-screen overflow-hidden">
+		<div className="flex min-h-screen">
 			{/* Botón para abrir/cerrar el sidebar en dispositivos móviles */}
 			<button
 				className="fixed top-4 left-4 z-50 p-2 bg-primary text-primary-foreground rounded-md"
@@ -28,9 +28,9 @@ export default function PrivateSidebar({ children }: SidebarProps) {
 						viewBox="0 0 24 24"
 						fill="none"
 						stroke="currentColor"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
+						strokeWidth="2"
+						strokeLinecap="round"
+						strokeLinejoin="round"
 						className="icon icon-tabler icons-tabler-outline icon-tabler-x"
 					>
 						<path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -45,9 +45,9 @@ export default function PrivateSidebar({ children }: SidebarProps) {
 						viewBox="0 0 24 24"
 						fill="none"
 						stroke="currentColor"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
+						strokeWidth="2"
+						strokeLinecap="round"
+						strokeLinejoin="round"
 						className="icon icon-tabler icons-tabler-outline icon-tabler-menu-2"
 					>
 						<path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -73,7 +73,6 @@ export default function PrivateSidebar({ children }: SidebarProps) {
 			>
 				<nav className="h-full overflow-y-auto p-4">
 					<div className="flex justify-between items-center mb-4">
-						
 						<h2
 							className={`text-xl font-bold ${
 								isSidebarOpen ? '' : 'lg:hidden'
@@ -94,9 +93,9 @@ export default function PrivateSidebar({ children }: SidebarProps) {
 								viewBox="0 0 24 24"
 								fill="none"
 								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
+								strokeWidth="2"
+								strokeLinecap="round"
+								strokeLinejoin="round"
 								className={` icon icon-tabler icons-tabler-outline icon-tabler-chevron-lefttransform transition-transform ${
 									isSidebarOpen ? '' : 'rotate-180'
 								}`}
@@ -118,9 +117,9 @@ export default function PrivateSidebar({ children }: SidebarProps) {
 									viewBox="0 0 24 24"
 									fill="none"
 									stroke="currentColor"
-									stroke-width="2"
-									stroke-linecap="round"
-									stroke-linejoin="round"
+									strokeWidth="2"
+									strokeLinecap="round"
+									strokeLinejoin="round"
 									className="mr-2 icon icon-tabler icons-tabler-outline icon-tabler-shield-chevron"
 								>
 									<path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -151,9 +150,9 @@ export default function PrivateSidebar({ children }: SidebarProps) {
 									viewBox="0 0 24 24"
 									fill="none"
 									stroke="currentColor"
-									stroke-width="2"
-									stroke-linecap="round"
-									stroke-linejoin="round"
+									strokeWidth="2"
+									strokeLinecap="round"
+									strokeLinejoin="round"
 									className="mr-2 icon icon-tabler icons-tabler-outline icon-tabler-shield-chevron"
 								>
 									<path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -192,9 +191,9 @@ export default function PrivateSidebar({ children }: SidebarProps) {
 									viewBox="0 0 24 24"
 									fill="none"
 									stroke="currentColor"
-									stroke-width="2"
-									stroke-linecap="round"
-									stroke-linejoin="round"
+									strokeWidth="2"
+									strokeLinecap="round"
+									strokeLinejoin="round"
 									className="mr-2 icon icon-tabler icons-tabler-outline icon-tabler-shield-chevron"
 								>
 									<path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -225,9 +224,9 @@ export default function PrivateSidebar({ children }: SidebarProps) {
 									viewBox="0 0 24 24"
 									fill="none"
 									stroke="currentColor"
-									stroke-width="2"
-									stroke-linecap="round"
-									stroke-linejoin="round"
+									strokeWidth="2"
+									strokeLinecap="round"
+									strokeLinejoin="round"
 									className="mr-2 icon icon-tabler icons-tabler-outline icon-tabler-shield-chevron"
 								>
 									<path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -258,9 +257,9 @@ export default function PrivateSidebar({ children }: SidebarProps) {
 									viewBox="0 0 24 24"
 									fill="none"
 									stroke="currentColor"
-									stroke-width="2"
-									stroke-linecap="round"
-									stroke-linejoin="round"
+									strokeWidth="2"
+									strokeLinecap="round"
+									strokeLinejoin="round"
 									className="mr-2 icon icon-tabler icons-tabler-outline icon-tabler-shield-chevron"
 								>
 									<path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -291,9 +290,9 @@ export default function PrivateSidebar({ children }: SidebarProps) {
 									viewBox="0 0 24 24"
 									fill="none"
 									stroke="currentColor"
-									stroke-width="2"
-									stroke-linecap="round"
-									stroke-linejoin="round"
+									strokeWidth="2"
+									strokeLinecap="round"
+									strokeLinejoin="round"
 									className="mr-2 icon icon-tabler icons-tabler-outline icon-tabler-shield-chevron"
 								>
 									<path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -324,9 +323,9 @@ export default function PrivateSidebar({ children }: SidebarProps) {
 									viewBox="0 0 24 24"
 									fill="none"
 									stroke="currentColor"
-									stroke-width="2"
-									stroke-linecap="round"
-									stroke-linejoin="round"
+									strokeWidth="2"
+									strokeLinecap="round"
+									strokeLinejoin="round"
 									className="mr-2 icon icon-tabler icons-tabler-outline icon-tabler-shield-chevron"
 								>
 									<path stroke="none" d="M0 0h24v24H0z" fill="none" />

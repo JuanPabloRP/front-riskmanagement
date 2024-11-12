@@ -1,8 +1,11 @@
 import { Avatar, Dropdown, Navbar } from 'flowbite-react';
 import { PATHS } from '../shared/constants/routes.constant';
 import RM_Link from '../shared/components/RM_Link';
+import { useUser } from '../context/userContext';
 
 const PrivateNavbar = () => {
+	const { userInfo } = useUser();
+
 	return (
 		<Navbar className="bg-bg m-2 w-3/4 mx-auto rounded-xl border border-border sticky top-2 z-50 ">
 			<RM_Link
@@ -50,9 +53,9 @@ const PrivateNavbar = () => {
 					className="bg-bg border-border-secondary text-text-primary"
 				>
 					<Dropdown.Header className="border-border-secondary text-text-primary">
-						<span className="block text-sm">Bonnie Green</span>
+						<span className="block text-sm">{userInfo?.identification}</span>
 						<span className="block truncate text-sm font-medium">
-							name@flowbite.com
+							{userInfo?.email}
 						</span>
 					</Dropdown.Header>
 					<Dropdown.Item className="text-text-primary hover:bg-bg-fill-hover active:bg-bg-fill-active focus:bg-bg-fill-active">

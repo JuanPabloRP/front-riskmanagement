@@ -29,7 +29,7 @@ export const fetchMethod = async <T>(
 
 	try {
 		const response = await fetch(url, requestOptions);
-
+		
 		if (!response.ok) {
 			throw new Error(
 				`Error en la solicitud a ${url}: ${response.statusText} (Status: ${response.status})`

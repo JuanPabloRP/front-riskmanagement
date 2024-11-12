@@ -1,5 +1,5 @@
 // React
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { UserType } from '../../../../shared/interfaces/user.interface';
 
 // Constants
@@ -14,17 +14,16 @@ import {
 	notifyError,
 	notifySuccess,
 } from '../../../../shared/components/RM_Toast';
-import { fetchMethod } from '../../../../utils/fetchMethod';
 
 // Components
 import { Toaster } from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { UserRolesEnum } from '../../../../shared/enums/user-roles.enum';
 import RM_Input from '../../../../shared/components/RM_Input';
 import RM_Select from '../../../../shared/components/RM_Select';
 import RM_Button from '../../../../shared/components/RM_Button';
 import RM_Link from '../../../../shared/components/RM_Link';
-import RM_Modal from '../../../../shared/components/RM_Modal';
+import { useAuth } from '../../../../context/authContext';
 
 const SignUp = () => {
 	const [userInformation, setUserInformation] = useState<UserType>({
@@ -35,16 +34,17 @@ const SignUp = () => {
 		passwordConfirmation: '',
 		role: '',
 		firstName: '',
-		createdAt: undefined,
-		updatedAt: undefined,
 		email: '',
 		id: undefined,
 	});
-	const API_URL = import.meta.env.VITE_API_URL;
+	const navigate = useNavigate();
+
+	//const API_URL = import.meta.env.VITE_API_URL;
+	const { signup, isAuthenticated } = useAuth();
 
 	const roles = ROLES.filter((rol) => rol.value !== UserRolesEnum.SUPERADMIN);
 
-	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
 		if (
@@ -54,7 +54,8 @@ const SignUp = () => {
 			!userInformation?.passwordConfirmation ||
 			!userInformation?.role ||
 			!userInformation?.birthDate ||
-			!userInformation?.identification
+			!userInformation?.identification ||
+			!userInformation?.email
 		) {
 			notifyError('Por favor llena todos los campos');
 			return;
@@ -78,15 +79,22 @@ const SignUp = () => {
 			return;
 		}
 
-		fetchMethod(
-			`${API_URL}/v1/user`,
-			MethodType.POST,
-			userInformation,
-			ResponseType.JSON,
-			undefined,
-			true
-		);
-		notifySuccess('Usuario registrado correctamente');
+		const userInfo = {
+			firstName: userInformation.firstName,
+			lastName: userInformation.lastName,
+			email: userInformation.email,
+			password: userInformation.password,
+			roleId: 1,
+			statusId: 1,
+			birthDate: userInformation.birthDate,
+			identification: userInformation.identification,
+		};
+
+		await signup(userInfo);
+
+		if (isAuthenticated) {
+			navigate(PATHS.private.home);
+		}
 	};
 
 	const handleChange = (field: keyof UserType, value: string) => {
@@ -103,14 +111,13 @@ const SignUp = () => {
 		}));
 	};
 
-	const [isModalOpen, setIsModalOpen] = useState(false);
-
-	const openModal = () => setIsModalOpen(true);
-	const closeModal = () => setIsModalOpen(false);
+	useEffect(() => {
+		if (isAuthenticated) navigate(PATHS.private.home);
+	}, [isAuthenticated, navigate]);
 
 	return (
 		<form
-			className="flex justify-center items-center max-w-2xl flex-col gap-4 mx-auto min-h-full px-3 mt-10"
+			className="flex justify-center items-center max-w-2xl flex-col gap-4 mx-auto min-h-full px-3 mt-10 "
 			onSubmit={handleSubmit}
 		>
 			<RM_Link
@@ -156,6 +163,13 @@ const SignUp = () => {
 					}
 				/>
 				<RM_Input
+					value={userInformation?.email}
+					onChange={(value) => handleChange('email', value as string)}
+					label="Correo"
+					type="email"
+					required
+				/>
+				{/* 	<RM_Input
 					value={userInformation?.lastName}
 					onChange={(value) => handleChange('lastName', value as string)}
 					error={
@@ -167,7 +181,7 @@ const SignUp = () => {
 					type="text"
 					label="Apellidos"
 					required
-				/>
+				/> */}
 			</div>
 			<div className="flex flex-col md:flex-row gap-2 w-full">
 				<RM_Input
@@ -206,7 +220,7 @@ const SignUp = () => {
 				<RM_Input
 					value={userInformation?.identification}
 					onChange={(value) => handleChange('identification', value as string)}
-					label="Cédula"
+					label="Identificación"
 					type="number"
 					placeholder="1007234567"
 					min={1000000}
@@ -247,51 +261,6 @@ const SignUp = () => {
 				</Link>
 			</p>
 			<Toaster />
-			<div className="">
-				<RM_Button
-					onClick={openModal}
-					variant="danger"
-					icon={
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="24"
-							height="24"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							strokeWidth="2"
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							className="icon icon-tabler icons-tabler-outline icon-tabler-circle-minus"
-						>
-							<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-							<path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-							<path d="M9 12l6 0" />
-						</svg>
-					}
-				></RM_Button>
-				<RM_Modal
-					isOpen={isModalOpen}
-					onClose={closeModal}
-					title="Deseas eliminar esto"
-				>
-					<p className="mb-4">
-						¿Estás seguro de que deseas eliminar este elemento?
-					</p>
-					<footer className="flex gap-2">
-						<RM_Button
-							onClick={closeModal}
-							variant="neutral"
-							hasBackground={false}
-						>
-							Cancelar
-						</RM_Button>
-						<RM_Button onClick={closeModal} variant="danger">
-							Elimianr
-						</RM_Button>
-					</footer>
-				</RM_Modal>
-			</div>
 		</form>
 	);
 };

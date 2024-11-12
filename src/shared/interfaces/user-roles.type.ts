@@ -5,5 +5,5 @@ export interface RolesType {
 export interface RoleType {
 	id?: number;
 	name: string;
-	description: string;
+	description?: string;
 }

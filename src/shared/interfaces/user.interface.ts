@@ -8,6 +8,4 @@ export interface UserType {
 	identification: string;
 	birthDate: Date | string;
 	role: string;
-	createdAt?: Date;
-	updatedAt?: Date;
 }

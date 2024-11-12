@@ -1,46 +1,66 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import { RoleType } from '../../../shared/interfaces/user-roles.type';
-import { UserRolesEnum } from '../../../shared/enums/user-roles.enum';
 import RM_Button from '../../../shared/components/RM_Button';
+import { fetchMethod } from '../../../utils/fetchMethod';
+import { MethodType } from '../../../shared/enums/httpEnums';
+import RM_Modal from '../../../shared/components/RM_Modal';
+import {
+	notifyError,
+	notifyLoading,
+	notifySuccess,
+} from '../../../shared/components/RM_Toast';
 
 const ListRoles = () => {
-	const roles: RoleType[] = [
-		{
-			id: 1,
-			name: UserRolesEnum.SUPERADMIN,
-			description: 'Rol con todos los permisos',
-		},
-		{
-			id: 2,
-			name: UserRolesEnum.ADMIN,
-			description: 'Rol con permisos de administrador',
-		},
-		{
-			id: 3,
-			name: UserRolesEnum.RISK_MANAGER,
-			description: 'Rol con permisos de gestor de riesgo',
-		},
-		{
-			id: 4,
-			name: UserRolesEnum.RISK_OWNER,
-			description: 'Rol con permisos de propietario del riesgo',
-		},
-		{
-			id: 5,
-			name: UserRolesEnum.ASSET_MANAGER,
-			description: 'Rol con permisos de gestor de activos',
-		},
-		{
-			id: 6,
-			name: UserRolesEnum.SECURITY_ANALYST,
-			description: 'Rol con permisos de analista de seguridad',
-		},
-		{
-			id: 7,
-			name: UserRolesEnum.AUDITOR,
-			description: 'Rol con permisos de auditor',
-		},
-	];
+	const [roles, setRoles] = useState<RoleType[]>([]);
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [roleToDelete, setRoleToDelete] = useState<RoleType | null>(null);
+
+	const openModal = (role: RoleType) => {
+		setRoleToDelete(role);
+		setIsModalOpen(true);
+	};
+
+	const closeModal = () => {
+		setIsModalOpen(false);
+		setRoleToDelete(null);
+	};
+
+	useEffect(() => {
+		fetchMethod<RoleType[]>(
+			'http://localhost:8080/api/v1/role',
+			MethodType.GET,
+			null,
+			undefined,
+			undefined,
+			true
+		)
+			.then((data) => {
+				setRoles(data);
+			})
+			.catch(() => {
+				notifyError('Hubo un error al obtener los roles');
+			});
+	}, []);
+
+	const deleteRole = (id: number) => {
+		fetchMethod<RoleType[]>(
+			`http://localhost:8080/api/v1/role/${id}`,
+			MethodType.DELETE,
+			null,
+			undefined,
+			undefined,
+			true
+		)
+			.then(() => {
+				notifySuccess('Rol eliminado correctamente');
+				setRoles((prevRoles) => prevRoles.filter((role) => role.id !== id));
+				closeModal();
+			})
+			.catch(() => {
+				notifyError('Hubo un error al eliminar el rol');
+			});
+	};
+
 	return (
 		<section>
 			<h1 className="text-center text-3xl font-semibold mb-5">
@@ -61,6 +81,7 @@ const ListRoles = () => {
 							</div>
 							<div className="flex gap-1">
 								<RM_Button
+									onClick={() => {}}
 									variant="neutral"
 									icon={
 										<svg
@@ -76,13 +97,14 @@ const ListRoles = () => {
 											className="icon icon-tabler icons-tabler-outline icon-tabler-edit"
 										>
 											<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-											<path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
+											<path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 -2h9a2 2 0 0 0 2 -2v-1" />
 											<path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
 											<path d="M16 5l3 3" />
 										</svg>
 									}
 								></RM_Button>
 								<RM_Button
+									onClick={() => openModal(role)}
 									variant="danger"
 									icon={
 										<svg
@@ -108,6 +130,32 @@ const ListRoles = () => {
 					))}
 				</ul>
 			</section>
+			{roleToDelete && (
+				<RM_Modal
+					isOpen={isModalOpen}
+					onClose={closeModal}
+					title={`Deseas eliminar el rol ${roleToDelete.name}`}
+				>
+					<p className="mb-4">
+						¿Estás seguro de que deseas eliminar {roleToDelete.name}?
+					</p>
+					<footer className="flex gap-2">
+						<RM_Button
+							onClick={closeModal}
+							variant="neutral"
+							hasBackground={false}
+						>
+							Cancelar
+						</RM_Button>
+						<RM_Button
+							onClick={() => deleteRole(roleToDelete.id)}
+							variant="danger"
+						>
+							Eliminar
+						</RM_Button>
+					</footer>
+				</RM_Modal>
+			)}
 		</section>
 	);
 };
