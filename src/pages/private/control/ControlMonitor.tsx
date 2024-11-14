@@ -7,15 +7,15 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import BackButton from '../../../shared/components/BackButton';
 
 const MonitoreoControl: React.FC = () => {
-    const { id } = useParams<{ id: string }>();  // Obtener el id del control de la URL
-    const [control, setControl] = useState<ControlType | null>(null);
+    const { id } = useParams<{ id: string }>();
+    const [control, setControl] = useState<ControlType | null>({} as ControlType);
     const [seguimiento, setSeguimiento] = useState<string>('Sin seguimiento');
     const [efectividad, setEfectividad] = useState<number>(0);
 
     useEffect(() => {
         if (id) {
-            // Simulación de búsqueda del control por id (puedes hacer una llamada a la API o buscar en un estado global)
-            const foundControl = {
+            setControl((prevState) => ({
+                ...prevState,
                 id: parseInt(id),
                 Nombre: "Control " + id,
                 tipo: "Tipo A",
@@ -25,12 +25,11 @@ const MonitoreoControl: React.FC = () => {
                 FechaImplementacion: new Date().toLocaleDateString(),
                 estado: "Activo",
                 responsable: "Juan Pérez"
-            };
-            setControl(foundControl);
-            setSeguimiento(`Seguimiento inicial para ${foundControl.Nombre}`);
+            }));
+            setSeguimiento(`Seguimiento inicial siendo de ${control?.descripcion} para ${control?.Nombre}`);
             setEfectividad(Math.floor(Math.random() * 100));
         }
-    }, [id]);
+    }, []);
 
     if (!control) {
         return <p className='text-text-primary text-center text-3xl'>Cargando...</p>;
@@ -38,37 +37,37 @@ const MonitoreoControl: React.FC = () => {
 
     const navigate = useNavigate();
 
-    const irGC = () => {
-        navigate(`${PATHS.private.controls.base}`);
-    };
+    
 
     return (
-        <div className='flex justify-between items-center border-b border-gray-300 py-2 px-4'>
-            <div>
-                <RM_Button onClick={() => irGC}>
-                    Volver
-                </RM_Button>
+
+        <div>
+            <div className='flex justify-center pb-4'>
+                <BackButton path={PATHS.private.controls.base} />
+                    
+               
             </div>
-            <h1 className="text-text-primary text-center text-3xl">{control.Nombre}</h1>
-            <div className="flex justify-between items-center border-b border-gray-300 py-2 px-4">
-                <div className="w-1/4 text-left">
-                    <h2 className="font-bold text-lg">Riesgo Asociado</h2>
-                    <p>{control.riesgoAsociado}</p>
-                </div>
-                <div className="w-1/2 text-left">
-                    <h2 className="font-bold text-lg">Seguimiento del Control</h2>
-                    <p>{seguimiento}</p>
-                </div>
-                <div className="w-1/4 text-left">
-                    <h2 className="font-bold text-lg">Efectividad (%)</h2>
-                    <p className="text-green-600 font-semibold">{efectividad}%</p>
+            <h1 className="text-text-primary text-center text-3xl">Seguimiento de control</h1>
+            <div className='flex justify-between items-center border-b border-gray-300 py-2 px-4'>
+                <h1 className="text-text-primary text-center text-3xl">{control.Nombre}</h1>
+                <div className="flex justify-between items-center border-b border-gray-300 py-2 px-4">
+                    <div className="w-1/4 text-left">
+                        <h2 className="font-bold text-lg">Riesgo Asociado</h2>
+                        <p>{control.riesgoAsociado}</p>
+                    </div>
+                    <div className="w-1/2 text-left">
+                        <h2 className="font-bold text-lg">Seguimiento del Control</h2>
+                        <p>{seguimiento}</p>
+                    </div>
+                    <div className="w-1/4 text-left">
+                        <h2 className="font-bold text-lg">Efectividad (%)</h2>
+                        <p className="text-green-600 font-semibold">{efectividad}%</p>
+                    </div>
                 </div>
             </div>
         </div>
-        /*<>
-			<BackButton path={PATHS.private.controls.base} />
-			<h1>HOlla</h1>
-		</>*/
+
+
 
     );
 };
