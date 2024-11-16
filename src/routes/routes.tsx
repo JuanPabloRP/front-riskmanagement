@@ -18,6 +18,7 @@ import ListRoles from '../pages/private/role/ListRoles';
 import ListAssets from '../pages/private/asset/ListAssets';
 import TreatmentPlan from '../pages/private/treatmentPlan/TreatmentPlan';
 import TreatmentPlanCreate from '../pages/private/treatmentPlan/TreatmentPlanCreate';
+import ThreatManagement from '../pages/private/home/threatLog';
 
 const AppRoutes = () => {
 	return (
@@ -46,6 +47,12 @@ const AppRoutes = () => {
 					element={<TreatmentPlanCreate />}
 				/>
 			</Route>
+
+			<Route path={PATHS.private.threats.base} element={<PrivateLayout />}>
+        		<Route path="" element={<ThreatManagement />} />
+        		<Route path={PATHS.private.threats.create} element={<ThreatManagement />} />
+        		<Route path={`${PATHS.private.threats.edit}/:id`} element={<ThreatManagement />} />
+      		</Route>
 
 			{/* Ruta principal a la que se entra la primera vez que se entra a la página */}
 			<Route path={PATHS.public.home} element={<PublicLayout />}>

@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
 
-interface OptionProps {
+export interface OptionProps {
 	label: string;
 	value: string | number;
 }
